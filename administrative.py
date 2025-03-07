@@ -196,7 +196,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.registeredPersonsTableWidget.clearContents()
         
         # Määritellään taulukkoelementin otsikot
-        headerRow = ['Henkilötunnus', 'Etunimi', 'Sukunimi', 'Ryhmä', 'Ajokortti', 'sähköposti']
+        headerRow = ['Henkilötunnus', 'sähköposti', 'Etunimi', 'Sukunimi', 'Ryhmä', 'Ajokorttiluokka']
         self.ui.registeredPersonsTableWidget.setHorizontalHeaderLabels(headerRow)
 
         # Asetetaan taulukon solujen arvot
