@@ -1055,8 +1055,8 @@ background-color: rgb(255, 1, 5);</string>
      <widget class="QPushButton" name="printReportPushButton">
       <property name="geometry">
        <rect>
-        <x>260</x>
-        <y>80</y>
+        <x>790</x>
+        <y>100</y>
         <width>61</width>
         <height>23</height>
        </rect>
@@ -1071,7 +1071,7 @@ background-color: rgb(255, 1, 5);</string>
        <cursorShape>PointingHandCursor</cursorShape>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(57, 136, 220);
+       <string notr="true">background-color: rgb(220, 162,25);
 color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
@@ -11116,6 +11116,88 @@ color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>Esikatselu</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="ssnFilterLineEdit">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>80</y>
+        <width>113</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="registerFilterLineEdit">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>80</y>
+        <width>113</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="ssnFilterLabel">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>60</y>
+        <width>47</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Hetu</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="registerFilterLabel">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>60</y>
+        <width>101</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Rekisterinumero</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="getReportPushButton">
+      <property name="geometry">
+       <rect>
+        <x>700</x>
+        <y>100</y>
+        <width>61</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(57, 136, 220);
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Hae</string>
       </property>
      </widget>
     </widget>

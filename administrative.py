@@ -13,6 +13,7 @@ import json # JSON-objektien ja tiedostojen käsittely
 
 from PySide6 import QtWidgets # Qt-vimpaimet
 from PySide6 import QtGui # Pixmap- muunnoksia varten
+from PySide6.QtCore import QDate
 
 
 # Käyttöliittymämoduulien lataukset
@@ -91,7 +92,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.removeVehiclePushButton.clicked.connect(self.deleteVehicle)
         self.ui.deletePersonPushButton.clicked.connect(self.deletePerson)
         self.ui.deleteGroupPushButton.clicked.connect(self.deleteGroup)
-        
+        self.ui.getReportPushButton.clicked.connect(self.updateDiaryTableWidget) # Ajopäiväkirjojen haku
         # Taulukoiden soluvalinnat
         self.ui.vehicleCatalogTableWidget.cellClicked.connect(self.setRegisterNumber)
         self.ui.registeredPersonsTableWidget.cellClicked.connect(self.setSSN)
@@ -130,7 +131,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.updateLenderTableWidget() # Lainaajien tiedot
         self.updateVehicleTableWidget() # Autojen tiedot
         self.updateGroupTableWidget() # Ryhmien tiedot
-        self.updateDiaryTableWidget() # Ajopäiväkirja
+        self.ui.diaryTableWidget.clear() # Tyhjentää raporttisivun taulukon
         self.ui.removeVehiclePushButton.setEnabled(False) # Otetaan auton-poisto painike pois käytöstä
         self.ui.deletePersonPushButton.setEnabled(False) # Otetaan lainaajan poisto-painike pois käytöstä
         self.ui.deleteGroupPushButton.setEnabled(False) # Otetaan ryhmän poisto-painike pois käytöstä
@@ -176,7 +177,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.vehicleTypecomboBox.addItems(typeStringList)
         
         # Lista ajopäiväkirjoista -> reporttinäkymien nimet
-        self.ui.reportTypecomboBox.addItem('Ajopäiväkirja -kaikki')
+        self.ui.reportTypecomboBox.clear
+        self.ui.reportTypecomboBox.addItems(['ajopaivakirja', 'autoittain'])
         
     # Lainaajat-taulukon päivitys
     def updateLenderTableWidget(self):
@@ -266,7 +268,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 data = QtWidgets.QTableWidgetItem(str(tableData[row][column])) 
                 self.ui.savedGroupsTableWidget.setItem(row, column, data)
 
-    
     # Päivitetään ajopäiväkirjan taulukko
     def updateDiaryTableWidget(self):
         # Luetaan tietokanta-asetukset paikallisiin muuttujiin
@@ -274,11 +275,44 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         plainTextPassword = self.plainTextPassword
         dbSettings['password'] = plainTextPassword # Vaidetaan selväkieliseksi
 
+        # Luetaan raportti-sivun kontrollit paikallisiin muuttujiin
+        reportName = self.ui.reportTypecomboBox.currentText()
+        dateStart = self.ui.beginingDateEdit.date()
+        dateEnd = self.ui.endingDateEdit.date()
+        userFilter = self.ui.ssnFilterLineEdit.text()
+        registerFilter= self.ui.registerFilterLineEdit.text()
+        sqlFilter = ''
         # Luodaan tietokantayhteys-olio
         dbConnection = dbOperations.DbConnection(dbSettings)
 
-        # Tehdään lista lainaaja-taulun tiedoista
-        tableData = dbConnection.readAllColumnsFromTable('ajopaivakirja')
+        
+        # TODO: Tähän reportTypeComboboxin luku, josta saadaan raportin näkymän nimi
+        # TODO: Muuta hakufunktio filterColumnsFromTable:ksi
+        
+        if dateStart == None or dateEnd == None:
+            dateFilterString = ''
+        else:
+            dateFilterString = f'otto BETWEEN {dateStart} AND {dateEnd}'
+            
+        if userFilter == '':
+            userfilterString = ''
+        else:
+            f"AND hetu = '{userFilter}'"
+            
+        if registerFilter == '':
+            registerFilterString = ''
+        else:
+            f"AND rekisterinumero = '{registerFilter}'"
+            
+        
+        sqlFilter = dateFilterString + userfilterString + registerFilterString
+        
+        if sqlFilter == '':
+            tableData = dbConnection.readAllColumnsFromTable(reportName)
+            
+        else:
+            print(sqlFilter)
+            tableData = dbConnection.filterColumsFromTable(reportName, ['*'], sqlFilter)
         
         #Tyhjennetään vanhat tiedot käyttöliittymästä ennen  uusien lukemista tietokannasta
         self.ui.diaryTableWidget.clearContents()
