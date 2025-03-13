@@ -22,7 +22,7 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>941</width>
+      <width>911</width>
       <height>561</height>
      </rect>
     </property>
@@ -35,7 +35,7 @@
      <cursorShape>ArrowCursor</cursorShape>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="lenderTab">
      <property name="cursor">
@@ -123,7 +123,7 @@ color: rgb(255, 255, 255);</string>
        <rect>
         <x>130</x>
         <y>10</y>
-        <width>171</width>
+        <width>173</width>
         <height>191</height>
        </rect>
       </property>
@@ -156,23 +156,18 @@ color: rgb(255, 255, 255);</string>
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="groupComboBox">
-         <property name="font">
-          <font>
-           <pointsize>11</pointsize>
-          </font>
-         </property>
-         <property name="currentText">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QLineEdit" name="vehicleClassLineEdit">
          <property name="font">
           <font>
            <pointsize>11</pointsize>
           </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="agbRestrictionCheckBox">
+         <property name="text">
+          <string>Vain automaattivaihteiset</string>
          </property>
         </widget>
        </item>
@@ -234,18 +229,6 @@ color: rgb(255, 255, 255);</string>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="groupLabel">
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>Ryhmä</string>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QLabel" name="vehicleClassLabel">
          <property name="font">
           <font>
@@ -254,6 +237,18 @@ color: rgb(255, 255, 255);</string>
          </property>
          <property name="text">
           <string>Ajokorttiluokka</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="agbRestriction">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Automaatti</string>
          </property>
         </widget>
        </item>
@@ -306,7 +301,7 @@ background-color: rgb(255, 1, 5);</string>
         <x>10</x>
         <y>0</y>
         <width>101</width>
-        <height>231</height>
+        <height>241</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="vehicleLabelsVerticalLayout">
@@ -378,6 +373,13 @@ background-color: rgb(255, 1, 5);</string>
         </widget>
        </item>
        <item>
+        <widget class="QLabel" name="agbLabel">
+         <property name="text">
+          <string>Automaatti</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QLabel" name="vehicleOwnerLabol">
          <property name="text">
           <string>Vastuuhenkilö</string>
@@ -392,7 +394,7 @@ background-color: rgb(255, 1, 5);</string>
         <x>120</x>
         <y>0</y>
         <width>169</width>
-        <height>238</height>
+        <height>242</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="vehicleInputsVerticalLayout">
@@ -466,6 +468,13 @@ background-color: rgb(255, 1, 5);</string>
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="agbCheckBox">
+         <property name="text">
+          <string>Automaattivaihteet</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QLineEdit" name="vehicleOwnerLineEdit">
          <property name="clearButtonEnabled">
           <bool>true</bool>
@@ -530,9 +539,9 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>240</y>
-        <width>721</width>
-        <height>271</height>
+        <y>280</y>
+        <width>831</width>
+        <height>231</height>
        </rect>
       </property>
       <property name="cursor" stdset="0">
@@ -548,8 +557,14 @@ color: rgb(255, 255, 255);</string>
        <number>99</number>
       </property>
       <property name="columnCount">
-       <number>8</number>
+       <number>9</number>
       </property>
+      <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+       <bool>true</bool>
+      </attribute>
       <row/>
       <row/>
       <row/>
@@ -649,6 +664,7 @@ color: rgb(255, 255, 255);</string>
       <row/>
       <row/>
       <row/>
+      <column/>
       <column/>
       <column/>
       <column/>
@@ -731,178 +747,6 @@ color: rgb(255, 255, 255);</string>
         <y>80</y>
         <width>91</width>
         <height>23</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(57, 136, 220);
-background-color: rgb(255, 1, 5);</string>
-      </property>
-      <property name="text">
-       <string>Poista</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="groupsTab">
-     <attribute name="title">
-      <string>Ryhmät</string>
-     </attribute>
-     <widget class="QPushButton" name="saveGroupPushButton">
-      <property name="geometry">
-       <rect>
-        <x>300</x>
-        <y>60</y>
-        <width>81</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(57, 136, 220);
-color: rgb(255, 255, 255);</string>
-      </property>
-      <property name="text">
-       <string>Tallenna</string>
-      </property>
-     </widget>
-     <widget class="QTableWidget" name="savedGroupsTableWidget">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>120</y>
-        <width>351</width>
-        <height>331</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-       </font>
-      </property>
-      <property name="cursor" stdset="0">
-       <cursorShape>ArrowCursor</cursorShape>
-      </property>
-      <property name="rowCount">
-       <number>10</number>
-      </property>
-      <property name="columnCount">
-       <number>2</number>
-      </property>
-      <row/>
-      <row/>
-      <row/>
-      <row/>
-      <row/>
-      <row/>
-      <row/>
-      <row/>
-      <row/>
-      <row/>
-      <column/>
-      <column/>
-     </widget>
-     <widget class="QLabel" name="savedGroupsLabel">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>100</y>
-        <width>101</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Tallennetut ryhmät</string>
-      </property>
-     </widget>
-     <widget class="QWidget" name="layoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>20</y>
-        <width>169</width>
-        <height>60</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
-        <widget class="QLineEdit" name="groupNameLineEdit">
-         <property name="font">
-          <font>
-           <pointsize>11</pointsize>
-          </font>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="responsiblePLineEdit">
-         <property name="font">
-          <font>
-           <pointsize>11</pointsize>
-          </font>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="layoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>20</y>
-        <width>84</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_2">
-       <item>
-        <widget class="QLabel" name="groupNameLabel">
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>Ryhmän nimi</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="responsiblePLabel_2">
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>Vastuuhenkilö</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QPushButton" name="deleteGroupPushButton">
-      <property name="geometry">
-       <rect>
-        <x>300</x>
-        <y>30</y>
-        <width>81</width>
-        <height>21</height>
        </rect>
       </property>
       <property name="font">
