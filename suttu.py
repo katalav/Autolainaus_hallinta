@@ -27,13 +27,18 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Kutsutaan käyttöliittymän muodostusmetodia setupUi
         self.ui.setupUi(self)
 
+        self.today = QDate.currentDate()
+        self.currentYear = str(self.today.toPython())[1:4]
+        self.firstDayOfYear = QDate(int(self.currentYear), 1, 1)
+
+
         # OHJELMOIDUT SIGNAALIT
         # ---------------------
         
         self.ui.dateEdit.dateChanged.connect(self.getDate) # Päivämäärä
         self.ui.timeEdit.timeChanged.connect(self.getTime) # Kellonaika
         
-   
+        self.ui.dateEdit.setDate(self.today)
     # OHJELMOIDUT SLOTIT
     # ------------------
     # Päivämäärävalitsimen metodi

@@ -68,9 +68,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
         # Asetetaan auton oletuskuvaksi harmaa kamera
         self.vehiclePicture = 'uiPictures\\noPicture.png'
+        
+        # Poistettavan auton rekisterinumero
         self.vehicleToDelete = ''
         self.personToDelete = ''
-        self.groupToDelete = ''
+        
+        # Kuluvan päivän ja vuoden määritys
+        # TODO : Tee slotti, joka päivittää 
+        self.today = QDate.currentDate()
+        self.currentYear = str(self.today.toPython())[1:4]
+        self.firstDayOfYear = QDate(int(self.currentYear), 1, 1)
+
 
         # OHJELMOIDUT SIGNAALIT
         # ---------------------
@@ -130,7 +138,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.updateVehicleTableWidget() # Autojen tiedot
         self.ui.diaryTableWidget.clear() # Tyhjentää raporttisivun taulukon
         self.ui.removeVehiclePushButton.setEnabled(False) # Otetaan auton-poisto painike pois käytöstä
-        self.ui.deletePersonPushButton.setEnabled(False) # Otetaan lainaajan poisto-painike pois käytöstä
+        self.ui.deletePersonPushButton.setEnabled(False) # Otetaan käyttäjän poisto-painike pois käytöstä
+        # self.ui.endingDateEdit.setDate(self.today) # 
+        # self.beginingDateEdit.setDate(self.firstDayOfYear) #
         
     # Välilehtien slotit
     # ------------------
@@ -244,18 +254,18 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # TODO: Tähän reportTypeComboboxin luku, josta saadaan raportin näkymän nimi
         # TODO: Muuta hakufunktio filterColumnsFromTable:ksi
         
-        if dateStart == None or dateEnd == None:
-            dateFilterString = ''
-        else:
-            dateFilterString = f'otto BETWEEN {dateStart} AND {dateEnd}'
+ 
+        dateFilterString = f"otto >= '{dateStart} 00:00:00+2' AND otto <= '{dateEnd} 23:59:59+2'"
             
         if userFilter == '':
             userfilterString = ''
+            
         else:
             f"AND hetu = '{userFilter}'"
             
         if registerFilter == '':
             registerFilterString = ''
+            
         else:
             f"AND rekisterinumero = '{registerFilter}'"
             
@@ -273,7 +283,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.diaryTableWidget.clearContents()
 
         # Määritellään taulukkoelementin otsikot
-        headerRow = ['Rekisteri', 'Merkki', 'HeTu', 'Sukunimi', 'Etunimi', 'ryhmä', 'Otettu', 'Palautettu']
+        headerRow = ['Rekisteri', 'Merkki', 'HeTu', 'Etunimi', 'Sukunimi', 'Otettu', 'Palautettu']
         self.ui.diaryTableWidget.setHorizontalHeaderLabels(headerRow)
 
         # Asetetaan taulukon solujen arvot
