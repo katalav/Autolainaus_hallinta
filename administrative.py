@@ -74,7 +74,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.personToDelete = ''
         
         # Kuluvan päivän ja vuoden määritys
-        # TODO : Tee slotti, joka päivittää 
+        # TODO : Tee slotti, joka päivittää -> getDates()
+        # TODO : Tee sille singnaali kun valitaan Raportit-välilehti
         self.today = QDate.currentDate()
         self.currentYear = str(self.today.toPython())[1:4]
         self.firstDayOfYear = QDate(int(self.currentYear), 1, 1)
@@ -90,7 +91,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Välilehtien vaihdon käynnistämät signaalit
 
         # Kun välilehteä vaihdetaan, päivitetään yhdistelmäruutujen valinnat
-        self.ui.tabWidget.currentChanged.connect(self.updateCombos)
+        self.ui.tabWidget.currentChanged.connect(self.updateChoices)
 
         # Painikkeet
         self.ui.savePersonPushButton.clicked.connect(self.savePerson)
@@ -99,6 +100,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.removeVehiclePushButton.clicked.connect(self.deleteVehicle)
         self.ui.deletePersonPushButton.clicked.connect(self.deletePerson)
         self.ui.getReportPushButton.clicked.connect(self.updateDiaryTableWidget) # Ajopäiväkirjojen haku
+        
         # Taulukoiden soluvalinnat
         self.ui.vehicleCatalogTableWidget.cellClicked.connect(self.setRegisterNumber)
         self.ui.registeredPersonsTableWidget.cellClicked.connect(self.setSSN)
@@ -133,21 +135,24 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Auton kuvaksi kameran kuva
         self.vehiclePicture = 'uiPictures\\noPicture.png' # Kuvan poluksi ei kuvaa symboli
         self.ui.carPhotoLabel.setPixmap(QtGui.QPixmap(self.vehiclePicture)) # auton kuvan päivitys
-        self.updateCombos() # Ryhmän valinta -yhdistelmäruudun arvot
+        self.updateChoices() # Ryhmän valinta -yhdistelmäruudun arvot
         self.updateLenderTableWidget() # Lainaajien tiedot
         self.updateVehicleTableWidget() # Autojen tiedot
         self.ui.diaryTableWidget.clear() # Tyhjentää raporttisivun taulukon
         self.ui.removeVehiclePushButton.setEnabled(False) # Otetaan auton-poisto painike pois käytöstä
         self.ui.deletePersonPushButton.setEnabled(False) # Otetaan käyttäjän poisto-painike pois käytöstä
-        # self.ui.endingDateEdit.setDate(self.today) # 
-        # self.beginingDateEdit.setDate(self.firstDayOfYear) #
         
     # Välilehtien slotit
     # ------------------
     # Ryhmän valinta ja ajoneuvotyyppi ruutujen arvojen päivitys
-    def updateCombos(self):
+    def updateChoices(self):
+        
+        # Päivitetään kuluva päivämäärä ja vuoden ensimmäinen päivä
+        self.today = QDate.currentDate()
+        self.currentYear = str(self.today.toPython())[0:4]
+        self.firstDayOfYear = QDate(int(self.currentYear), 1, 1)
 
-        # Luetaan tietokanta-asetukset paikallisiin muuttujiin
+
         dbSettings = self.currentSettings
         plainTextPassword = self.plainTextPassword
         dbSettings['password'] = plainTextPassword # Vaidetaan selväkieliseksi
@@ -156,10 +161,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Luodaan tietokantayhteys-olio
         dbConnection = dbOperations.DbConnection(dbSettings)
 
-        # Tehdään lista ryhmät-yhdistelmäruudun arvoista
+        # Tehdään lista ajoneuvotyyppi-yhdistelmäruudun arvoista
         typeList = dbConnection.readColumsFromTable('ajoneuvotyyppi', ['tyyppi'])
-
-        
         typeStringList = []
         for item in typeList:
             stringValue = str(item[0])
@@ -171,6 +174,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Lista ajopäiväkirjoista -> reporttinäkymien nimet
         self.ui.reportTypecomboBox.clear
         self.ui.reportTypecomboBox.addItems(['ajopaivakirja', 'autoittain'])
+        
+        #Raporttivälin päivämäärävalitsinten oletuspäivien asetus
+        self.ui.beginingDateEdit.setDate(self.firstDayOfYear)
+        self.ui.endingDateEdit.setDate(self.today)
         
     # Lainaajat-taulukon päivitys
     def updateLenderTableWidget(self):
@@ -200,7 +207,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 # Muutetaan merkkijonoksi ja QTableWidgetItem-olioksi
                 data = QtWidgets.QTableWidgetItem(str(tableData[row][column])) 
                 self.ui.registeredPersonsTableWidget.setItem(row, column, data)
-
 
 
     # Autot-taulukon päivitys
@@ -247,37 +253,27 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         userFilter = self.ui.ssnFilterLineEdit.text()
         registerFilter= self.ui.registerFilterLineEdit.text()
         sqlFilter = ''
+        
         # Luodaan tietokantayhteys-olio
         dbConnection = dbOperations.DbConnection(dbSettings)
 
         
-        # TODO: Tähän reportTypeComboboxin luku, josta saadaan raportin näkymän nimi
-        # TODO: Muuta hakufunktio filterColumnsFromTable:ksi
-        
- 
+        # Määritellään aikaväli, jonka raportti tulostetaan
         dateFilterString = f"otto >= '{dateStart} 00:00:00+2' AND otto <= '{dateEnd} 23:59:59+2'"
             
         if userFilter == '':
-            userfilterString = ''
-            
+            userfilterString = ''   
         else:
             f"AND hetu = '{userFilter}'"
             
         if registerFilter == '':
             registerFilterString = ''
-            
         else:
             f"AND rekisterinumero = '{registerFilter}'"
             
-        
-        sqlFilter = dateFilterString + userfilterString + registerFilterString
-        
-        if sqlFilter == '':
-            tableData = dbConnection.readAllColumnsFromTable(reportName)
-            
-        else:
-            print(sqlFilter)
-            tableData = dbConnection.filterColumsFromTable(reportName, ['*'], sqlFilter)
+        sqlFilter = dateFilterString + userfilterString + registerFilterString  
+        print(sqlFilter)
+        tableData = dbConnection.filterColumsFromTable(reportName, ['*'], sqlFilter)
         
         #Tyhjennetään vanhat tiedot käyttöliittymästä ennen  uusien lukemista tietokannasta
         self.ui.diaryTableWidget.clearContents()
@@ -350,6 +346,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         dbSettings = self.currentSettings
         plainTextPassword = self.plainTextPassword
         dbSettings['password'] = plainTextPassword
+        
+        # Luetaan syöttöelementtien arvot paikallisiin muuttujiin
         numberPlate = self.ui.numberPlateLineEdit.text()
         manufacturer = self.ui.manufacturerLineEdit.text()
         model = self.ui.modelLineEdit.text()
@@ -358,10 +356,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         vehicleType = self.ui.vehicleTypecomboBox.currentText()
         automaticGearBox = self.ui.agbCheckBox.isChecked()
         responsiblePerson = self.ui.vehicleOwnerLineEdit.text()
-        print ('automaattivaihteisto', automaticGearBox)
+        
         # Määritellään tallennusmetodin vaatimat parametrit
         tableName = 'auto'
-        
         vehicleDictionary = {'rekisterinumero': numberPlate,
                           'merkki': manufacturer,
                           'malli': model,
@@ -386,10 +383,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         with open(self.vehiclePicture, 'rb') as pictureFile:
             pictureData = pictureFile.read()
             
-            # Tätä voisi muokata siten, että tallennetaan tietokanta pixmap
-            #jollin user.py:ssä voitaisiin suoraan päivittää auton kuva 
-            #tallentamatta sitä ensin levylle.
-            
         # Luodaan uusi yhteys, koska edellinen suljettiin
         dbConnection2 = dbOperations.DbConnection(dbSettings)
         
@@ -407,6 +400,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         dbSettings = self.currentSettings
         plainTextPassword = self.plainTextPassword
         dbSettings['password'] = plainTextPassword
+        
          # Luodaan tietokantayhteys-olio
         dbConnection = dbOperations.DbConnection(dbSettings)
 
@@ -439,6 +433,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     # Taulukoiden soluvalinnat
     #-------------------------
     
+    # Asetetaan poistettavan auton rekisterinumero valitun rivin perusteella
     def setRegisterNumber(self):
         rowIndex = 0
         columnIndex = 0
@@ -451,6 +446,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.statusbar.showMessage(f'valitun auton rekisterinumero on {cellValue}')
         self.ui.removeVehiclePushButton.setEnabled(True)
     
+    # Asetetaan poistettavan henkilön HeTu valitun rivin perusteella
     def setRegisterNumber(self):
         rowIndex = 0
         columnIndex = 0
