@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>217</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,7 +27,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="dateLabel">
     <property name="geometry">
      <rect>
       <x>280</x>
@@ -37,7 +37,33 @@
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>Päivämäärä</string>
+    </property>
+   </widget>
+   <widget class="QTimeEdit" name="timeEdit">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>130</y>
+      <width>118</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="calendarPopup">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="timeLabel">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>140</y>
+      <width>49</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Kellonaika</string>
     </property>
    </widget>
   </widget>

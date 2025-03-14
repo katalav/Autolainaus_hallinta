@@ -232,8 +232,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # Luetaan raportti-sivun kontrollit paikallisiin muuttujiin
         reportName = self.ui.reportTypecomboBox.currentText()
-        dateStart = self.ui.beginingDateEdit.date()
-        dateEnd = self.ui.endingDateEdit.date()
+        dateStart = self.ui.beginingDateEdit.date().toPython()
+        dateEnd = self.ui.endingDateEdit.date().toPython()
         userFilter = self.ui.ssnFilterLineEdit.text()
         registerFilter= self.ui.registerFilterLineEdit.text()
         sqlFilter = ''
@@ -300,14 +300,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         email = self.ui.emailLineEdit.text()
         firstName = self.ui.firstNameLineEdit.text()
         lastName = self.ui.lastNameLineEdit.text()
-        group = self.ui.groupComboBox.currentText()
         licenseType = self.ui.vehicleClassLineEdit.text()
+        automaticGB = self.ui.agbRestrictionCheckBox.isChecked()
         lenderDictionary = {'hetu': ssn,
-                          'sahkoposti': email,
                           'etunimi': firstName,
                           'sukunimi': lastName,
-                          'ryhma': group,
-                          'ajokorttiluokka': licenseType }
+                          'ajokorttiluokka': licenseType,
+                          'automaatti': automaticGB,
+                          'sahkoposti': email
+                          }
         
         # Luodaan tietokantayhteys-olio
         dbConnection = dbOperations.DbConnection(dbSettings)

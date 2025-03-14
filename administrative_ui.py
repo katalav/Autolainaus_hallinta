@@ -26,7 +26,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1107, 634)
+        MainWindow.resize(948, 634)
         icon = QIcon(QIcon.fromTheme(u"preferences-desktop-accessibility"))
         MainWindow.setWindowIcon(icon)
         self.actionMuokkaa = QAction(MainWindow)
@@ -402,7 +402,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 1107, 33))
+        self.menubar.setGeometry(QRect(0, 0, 948, 33))
         self.menuAsetukset = QMenu(self.menubar)
         self.menuAsetukset.setObjectName(u"menuAsetukset")
         MainWindow.setMenuBar(self.menubar)

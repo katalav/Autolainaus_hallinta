@@ -30,20 +30,23 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # OHJELMOIDUT SIGNAALIT
         # ---------------------
         
-        # Kun päivämäärävalitsinta on päivitetty kutsutaan slottia
-        self.ui.dateEdit.dateChanged.connect(self.getDate)
-
+        self.ui.dateEdit.dateChanged.connect(self.getDate) # Päivämäärä
+        self.ui.timeEdit.timeChanged.connect(self.getTime) # Kellonaika
         
-   
    
     # OHJELMOIDUT SLOTIT
     # ------------------
-
-    # Muutetaan tulostettuLabel:n sisältö: teksti ja väri
+    # Päivämäärävalitsimen metodi
     def getDate(self):
-        dataAsFunktion = self.ui.dateEdit.date()
-        print('funktio', dataAsFunktion)
-        print('QDate funktio 1.1.2024', str(QDate(2024, 12, 31)))
+        date = self.ui.dateEdit.date().toPython()
+        print(date)
+        self.ui.dateLabel.setText(str(date))
+
+    # Kellonaikavalitsimen metodi
+    def getTime(self):
+        time = self.ui.timeEdit.time().toPython()
+        print(time)
+        self.ui.timeLabel.setText(str(time))
 
     # Avataan MessageBox
     def openWarning(self):
