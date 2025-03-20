@@ -197,7 +197,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.registeredPersonsTableWidget.clearContents()
         
         # Määritellään taulukkoelementin otsikot
-        headerRow = ['Henkilötunnus', 'Sukunimi', 'Etunimi', 'Ajokorttiluokka', 'Automaatti', 'sähköposti']
+        headerRow = ['Henkilötunnus', 'Etunimi', 'Sukunimi', 'Ajokorttiluokka', 'Automaatti', 'sähköposti']
         self.ui.registeredPersonsTableWidget.setHorizontalHeaderLabels(headerRow)
 
         # Asetetaan taulukon solujen arvot
@@ -251,7 +251,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         dateStart = self.ui.beginingDateEdit.date().toPython()
         dateEnd = self.ui.endingDateEdit.date().toPython()
         userFilter = self.ui.ssnFilterLineEdit.text()
-        registerFilter= self.ui.registerFilterLineEdit.text()
+        registerFilter = self.ui.registerFilterLineEdit.text()
         sqlFilter = ''
         
         # Luodaan tietokantayhteys-olio
