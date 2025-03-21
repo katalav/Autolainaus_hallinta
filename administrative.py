@@ -238,10 +238,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.ui.vehicleCatalogTableWidget.setItem(row, column, data)
 
 
-
     # Päivitetään ajopäiväkirjan taulukko
     def updateDiaryTableWidget(self):
-        # Luetaan tietokanta-asetukset paikallisiin muuttujiin
+         # Luetaan tietokanta-asetukset paikallisiin muuttujiin
         dbSettings = self.currentSettings
         plainTextPassword = self.plainTextPassword
         dbSettings['password'] = plainTextPassword # Vaidetaan selväkieliseksi
@@ -253,16 +252,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         userFilter = self.ui.ssnFilterLineEdit.text()
         registerFilter = self.ui.registerFilterLineEdit.text()
         sqlFilter = ''
-        
+
         # Luodaan tietokantayhteys-olio
         dbConnection = dbOperations.DbConnection(dbSettings)
 
-        
-        # Määritellään aikaväli, jonka raportti tulostetaan
-        dateFilterString = f"otto >= '{dateStart} 00:00:00+2' AND otto <= '{dateEnd} 23:59:59+2'"
-            
+        # Määritellään aikaväli, jolta raportti tulostetaan
+        dateFilterSring = f"otto >= '{dateStart} 00:00:00+2' AND otto <= '{dateEnd} 23:59:59+2'"
+
         if userFilter == '':
-            userfilterString = ''   
+            userFilterString = ''
         else:
             f"AND hetu = '{userFilter}'"
             
@@ -270,16 +268,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             registerFilterString = ''
         else:
             f"AND rekisterinumero = '{registerFilter}'"
-            
-        sqlFilter = dateFilterString + userfilterString + registerFilterString  
+
+        sqlFilter = dateFilterSring + userFilterString + registerFilterString
         print(sqlFilter)
-        tableData = dbConnection.filterColumsFromTable(reportName, ['*'], sqlFilter)
-        
-        #Tyhjennetään vanhat tiedot käyttöliittymästä ennen  uusien lukemista tietokannasta
+        tableData = dbConnection.filterColumsFromTable(reportName,['*'], sqlFilter)
+    
+        # Tyhjennetään vanhat tiedot käyttöliittymästä ennen uusien lukemista tietokannasta
         self.ui.diaryTableWidget.clearContents()
 
         # Määritellään taulukkoelementin otsikot
-        headerRow = ['Rekisteri', 'Merkki', 'HeTu', 'Etunimi', 'Sukunimi', 'Otettu', 'Palautettu']
+        headerRow = ['Rekisteri', 'Merkki', 'HeTu', 'Sukunimi', 'Etunimi', 'Otettu', 'Palautettu']
         self.ui.diaryTableWidget.setHorizontalHeaderLabels(headerRow)
 
         # Asetetaan taulukon solujen arvot
@@ -289,6 +287,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 # Muutetaan merkkijonoksi ja QTableWidgetItem-olioksi
                 data = QtWidgets.QTableWidgetItem(str(tableData[row][column])) 
                 self.ui.diaryTableWidget.setItem(row, column, data)
+    
+ 
+ 
     # Painikkeiden slotit
     # -----------------
 

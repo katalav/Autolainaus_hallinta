@@ -365,15 +365,15 @@ class Ui_MainWindow(object):
         self.printReportPushButton.setStyleSheet(u"background-color: rgb(220, 162,25);\n"
 "color: rgb(255, 255, 255);")
         self.diaryTableWidget = QTableWidget(self.reportsTab)
-        if (self.diaryTableWidget.columnCount() < 7):
-            self.diaryTableWidget.setColumnCount(7)
+        if (self.diaryTableWidget.columnCount() < 8):
+            self.diaryTableWidget.setColumnCount(8)
         if (self.diaryTableWidget.rowCount() < 10000):
             self.diaryTableWidget.setRowCount(10000)
         self.diaryTableWidget.setObjectName(u"diaryTableWidget")
-        self.diaryTableWidget.setGeometry(QRect(20, 160, 751, 321))
+        self.diaryTableWidget.setGeometry(QRect(20, 160, 851, 321))
         self.diaryTableWidget.viewport().setProperty(u"cursor", QCursor(Qt.CursorShape.ForbiddenCursor))
         self.diaryTableWidget.setRowCount(10000)
-        self.diaryTableWidget.setColumnCount(7)
+        self.diaryTableWidget.setColumnCount(8)
         self.previewLabel = QLabel(self.reportsTab)
         self.previewLabel.setObjectName(u"previewLabel")
         self.previewLabel.setGeometry(QRect(20, 140, 61, 16))

@@ -927,7 +927,7 @@ color: rgb(255, 255, 255);</string>
        <rect>
         <x>20</x>
         <y>160</y>
-        <width>751</width>
+        <width>851</width>
         <height>321</height>
        </rect>
       </property>
@@ -938,7 +938,7 @@ color: rgb(255, 255, 255);</string>
        <number>10000</number>
       </property>
       <property name="columnCount">
-       <number>7</number>
+       <number>8</number>
       </property>
       <row/>
       <row/>
@@ -10940,6 +10940,7 @@ color: rgb(255, 255, 255);</string>
       <row/>
       <row/>
       <row/>
+      <column/>
       <column/>
       <column/>
       <column/>

@@ -252,8 +252,10 @@ class DbConnection():
             # Suoritetaan SQL-lause ja luetaan tulokset kursorista
             cursor.execute(sqlClause)
             records= cursor.fetchall()
+            print(records)
             row = records[0] # Listasta monikko (tuple)
             column =row[0] # Monikosta arvo, joka tulee funktion tuottamana
+            print(column)
             isoDateTime = f'{column}' # Arvo merkkijonoksi muutettuna
             return isoDateTime
 
