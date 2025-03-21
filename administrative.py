@@ -277,7 +277,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.diaryTableWidget.clearContents()
 
         # Määritellään taulukkoelementin otsikot
-        headerRow = ['Rekisteri', 'Merkki', 'HeTu', 'Sukunimi', 'Etunimi', 'Otettu', 'Palautettu']
+        headerRow = ['Rekisteri', 'Merkki', 'Malli', 'HeTu', 'Sukunimi', 'Etunimi', 'Otettu', 'Palautettu']
         self.ui.diaryTableWidget.setHorizontalHeaderLabels(headerRow)
 
         # Asetetaan taulukon solujen arvot
