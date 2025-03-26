@@ -583,7 +583,7 @@ class SaveSettingsDialog(QtWidgets.QDialog, Settings_Dialog):
         msgBox = QtWidgets.QMessageBox()
         msgBox.setIcon(QtWidgets.QMessageBox.Information)
         msgBox.setWindowTitle('Luodaan uusi asetustiedosto')
-        msgBox.setText('Syötä kaikkien kenttien tiedot!')
+        msgBox.setText('Syötä kaikkien kenttien tiedot ja käynnistä sovellus uudelleen!')
         msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
         msgBox.exec() # Luodaan Msg Box:lle oma event loop
 

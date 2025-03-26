@@ -279,13 +279,6 @@ class Ui_MainWindow(object):
         self.saveVehiclePushButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.saveVehiclePushButton.setStyleSheet(u"background-color: rgb(57, 136, 220);\n"
 "color: rgb(255, 255, 255);")
-        self.printBarcodePushButton = QPushButton(self.vehicleTab)
-        self.printBarcodePushButton.setObjectName(u"printBarcodePushButton")
-        self.printBarcodePushButton.setGeometry(QRect(300, 40, 91, 23))
-        self.printBarcodePushButton.setFont(font1)
-        self.printBarcodePushButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.printBarcodePushButton.setStyleSheet(u"background-color: rgb(220, 162, 25);\n"
-"color: rgb(255, 255, 255);")
         self.vehicleCatalogTableWidget = QTableWidget(self.vehicleTab)
         if (self.vehicleCatalogTableWidget.columnCount() < 9):
             self.vehicleCatalogTableWidget.setColumnCount(9)
@@ -305,7 +298,7 @@ class Ui_MainWindow(object):
         self.vehicleListLabel.setGeometry(QRect(630, 220, 101, 16))
         self.openPicturesPushButton = QPushButton(self.vehicleTab)
         self.openPicturesPushButton.setObjectName(u"openPicturesPushButton")
-        self.openPicturesPushButton.setGeometry(QRect(300, 120, 91, 51))
+        self.openPicturesPushButton.setGeometry(QRect(300, 100, 91, 51))
         self.openPicturesPushButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.openPicturesPushButton.setStyleSheet(u"background-color: rgb(85, 170, 127);")
         icon1 = QIcon(QIcon.fromTheme(u"camera-photo"))
@@ -320,7 +313,7 @@ class Ui_MainWindow(object):
         self.carPhotoLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.removeVehiclePushButton = QPushButton(self.vehicleTab)
         self.removeVehiclePushButton.setObjectName(u"removeVehiclePushButton")
-        self.removeVehiclePushButton.setGeometry(QRect(300, 80, 91, 23))
+        self.removeVehiclePushButton.setGeometry(QRect(300, 50, 91, 23))
         self.removeVehiclePushButton.setFont(font1)
         self.removeVehiclePushButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.removeVehiclePushButton.setStyleSheet(u"background-color: rgb(57, 136, 220);\n"
@@ -416,7 +409,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -447,7 +440,6 @@ class Ui_MainWindow(object):
         self.vehicleOwnerLabol.setText(QCoreApplication.translate("MainWindow", u"Vastuuhenkil\u00f6", None))
         self.agbCheckBox.setText(QCoreApplication.translate("MainWindow", u"Automaattivaihteet", None))
         self.saveVehiclePushButton.setText(QCoreApplication.translate("MainWindow", u"Tallenna", None))
-        self.printBarcodePushButton.setText(QCoreApplication.translate("MainWindow", u"Viivakoodi", None))
         self.vehicleListLabel.setText(QCoreApplication.translate("MainWindow", u"Autoluettelo", None))
         self.openPicturesPushButton.setText("")
         self.carPhotoLabel.setText("")

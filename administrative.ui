@@ -35,7 +35,7 @@
      <cursorShape>ArrowCursor</cursorShape>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="lenderTab">
      <property name="cursor">
@@ -509,32 +509,6 @@ color: rgb(255, 255, 255);</string>
        <string>Tallenna</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="printBarcodePushButton">
-      <property name="geometry">
-       <rect>
-        <x>300</x>
-        <y>40</y>
-        <width>91</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(220, 162, 25);
-color: rgb(255, 255, 255);</string>
-      </property>
-      <property name="text">
-       <string>Viivakoodi</string>
-      </property>
-     </widget>
      <widget class="QTableWidget" name="vehicleCatalogTableWidget">
       <property name="geometry">
        <rect>
@@ -691,7 +665,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>300</x>
-        <y>120</y>
+        <y>100</y>
         <width>91</width>
         <height>51</height>
        </rect>
@@ -744,7 +718,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>300</x>
-        <y>80</y>
+        <y>50</y>
         <width>91</width>
         <height>23</height>
        </rect>
