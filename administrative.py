@@ -77,7 +77,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # TODO : Tee slotti, joka päivittää -> getDates()
         # TODO : Tee sille singnaali kun valitaan Raportit-välilehti
         self.today = QDate.currentDate()
-        self.currentYear = str(self.today.toPython())[1:4]
+        self.currentYear = str(self.today.toPython())[0:4]
         self.firstDayOfYear = QDate(int(self.currentYear), 1, 1)
 
 
@@ -172,7 +172,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.vehicleTypecomboBox.addItems(typeStringList)
         
         # Lista ajopäiväkirjoista -> reporttinäkymien nimet
-        self.ui.reportTypecomboBox.clear
+        self.ui.reportTypecomboBox.clear()
         self.ui.reportTypecomboBox.addItems(['ajopaivakirja', 'autoittain'])
         
         #Raporttivälin päivämäärävalitsinten oletuspäivien asetus
@@ -262,17 +262,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         if userFilter == '':
             userFilterString = ''
         else:
-            f"AND hetu = '{userFilter}'"
+            userFilterString = f"AND hetu = '{userFilter}'"
             
         if registerFilter == '':
             registerFilterString = ''
         else:
-            f"AND rekisterinumero = '{registerFilter}'"
+            registerFilterString = f"AND rekisterinumero = '{registerFilter}'"
 
         sqlFilter = dateFilterSring + userFilterString + registerFilterString
         print(sqlFilter)
         tableData = dbConnection.filterColumsFromTable(reportName,['*'], sqlFilter)
-    
+        
         # Tyhjennetään vanhat tiedot käyttöliittymästä ennen uusien lukemista tietokannasta
         self.ui.diaryTableWidget.clearContents()
 
@@ -388,7 +388,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         dbConnection2 = dbOperations.DbConnection(dbSettings)
         
         try:     
-            dbConnection2.updateBinaryField('auto','kuva', 'rekisterinumero', f"'{numberPlate}'", pictureData)
+            dbConnection2.updateBinaryField('auto', 'kuva', 'rekisterinumero', f"'{numberPlate}'", pictureData)
             self.refreshUi()
             
 
@@ -434,18 +434,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     # Taulukoiden soluvalinnat
     #-------------------------
     
-    # Asetetaan poistettavan auton rekisterinumero valitun rivin perusteella
-    def setRegisterNumber(self):
-        rowIndex = 0
-        columnIndex = 0
-        cellValue = ''
-        
-        # Haetaan aktiivisen solun rivinumero ja ensimmäisen sarakkeen arvo siltä riviltä
-        rowIndex = self.ui.vehicleCatalogTableWidget.currentRow()
-        cellValue = self.ui.vehicleCatalogTableWidget.item(rowIndex, columnIndex).text()
-        self.vehicleToDelete = cellValue
-        self.ui.statusbar.showMessage(f'valitun auton rekisterinumero on {cellValue}')
-        self.ui.removeVehiclePushButton.setEnabled(True)
+
     
     # Asetetaan poistettavan henkilön HeTu valitun rivin perusteella
     def setRegisterNumber(self):

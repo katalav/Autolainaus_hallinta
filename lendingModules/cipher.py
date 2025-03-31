@@ -1,9 +1,6 @@
 """A module to encrypt and decrypt text based data using symmetric encryption algorithm Fernet.
-
-
-    """
-
-# MODUULI SALAUAVAINTEN JA FERNET-SALAUKSEEN JA SEN PURKAMISEEN
+"""
+# MODUULI SALAUSAVAINTEN LUOMISEEN, FERNET-SALAUKSEEN JA SEN PURKAMISEEN
 # =============================================================
 
 # KIRJASTOJEN JA MODUULIEN LATAUKSET
@@ -94,14 +91,9 @@ def decryptString(cryptoText: str, key=b'8Zra5xvI3derJNwLCue1iDdw0lbZm_T0zXFaBkn
 
 
 if __name__ == "__main__":
-    key = b'yeDCerOn-3YZgtVt1Mp0J36cm_AF3iW9Q3DsaiqOS-g='
-    selko = b'Selkokirliteksti'
-    sifferi = createChipher(key)
-    sala = encrypt(sifferi, selko)
-    print(sala)
-"""
+
     selko = 'Hippopotamus'
     sala = encryptString(selko)
     print('Salakirjoitettuna se on:', sala)
     purettu = decryptString(sala)
-    print('Purettuna se on:', purettu) """
+    print('Purettuna se on:', purettu)

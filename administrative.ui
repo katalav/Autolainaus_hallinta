@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>948</width>
+    <width>1071</width>
     <height>634</height>
    </rect>
   </property>
@@ -22,7 +22,7 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>911</width>
+      <width>1051</width>
       <height>561</height>
      </rect>
     </property>
@@ -35,7 +35,7 @@
      <cursorShape>ArrowCursor</cursorShape>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="lenderTab">
      <property name="cursor">
@@ -901,7 +901,7 @@ color: rgb(255, 255, 255);</string>
        <rect>
         <x>20</x>
         <y>160</y>
-        <width>851</width>
+        <width>1001</width>
         <height>321</height>
        </rect>
       </property>
@@ -11026,7 +11026,7 @@ color: rgb(255, 255, 255);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>948</width>
+     <width>1071</width>
      <height>33</height>
     </rect>
    </property>
