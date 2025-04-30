@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1071</width>
+    <width>1055</width>
     <height>634</height>
    </rect>
   </property>
@@ -35,7 +35,7 @@
      <cursorShape>ArrowCursor</cursorShape>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="lenderTab">
      <property name="cursor">
@@ -486,8 +486,8 @@ background-color: rgb(255, 1, 5);</string>
      <widget class="QPushButton" name="saveVehiclePushButton">
       <property name="geometry">
        <rect>
-        <x>300</x>
-        <y>180</y>
+        <x>380</x>
+        <y>210</y>
         <width>91</width>
         <height>23</height>
        </rect>
@@ -531,7 +531,7 @@ color: rgb(255, 255, 255);</string>
        <number>99</number>
       </property>
       <property name="columnCount">
-       <number>9</number>
+       <number>10</number>
       </property>
       <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
        <bool>false</bool>
@@ -647,25 +647,13 @@ color: rgb(255, 255, 255);</string>
       <column/>
       <column/>
       <column/>
-     </widget>
-     <widget class="QLabel" name="vehicleListLabel">
-      <property name="geometry">
-       <rect>
-        <x>630</x>
-        <y>220</y>
-        <width>101</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Autoluettelo</string>
-      </property>
+      <column/>
      </widget>
      <widget class="QPushButton" name="openPicturesPushButton">
       <property name="geometry">
        <rect>
-        <x>300</x>
-        <y>100</y>
+        <x>380</x>
+        <y>110</y>
         <width>91</width>
         <height>51</height>
        </rect>
@@ -692,8 +680,8 @@ color: rgb(255, 255, 255);</string>
      <widget class="QLabel" name="carPhotoLabel">
       <property name="geometry">
        <rect>
-        <x>450</x>
-        <y>30</y>
+        <x>570</x>
+        <y>50</y>
         <width>261</width>
         <height>181</height>
        </rect>
@@ -717,8 +705,8 @@ color: rgb(255, 255, 255);</string>
      <widget class="QPushButton" name="removeVehiclePushButton">
       <property name="geometry">
        <rect>
-        <x>300</x>
-        <y>50</y>
+        <x>380</x>
+        <y>180</y>
         <width>91</width>
         <height>23</height>
        </rect>
@@ -738,6 +726,27 @@ background-color: rgb(255, 1, 5);</string>
       </property>
       <property name="text">
        <string>Poista</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="lendableCheckBox">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>30</y>
+        <width>171</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+color: rgb(85, 170, 0);
+font: 14pt &quot;Segoe UI&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Käytettävissä</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
       </property>
      </widget>
     </widget>
@@ -11018,6 +11027,34 @@ color: rgb(255, 255, 255);</string>
        <string>Hae</string>
       </property>
      </widget>
+     <widget class="QLineEdit" name="reasonFilterLineEdit">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>80</y>
+        <width>113</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="reasonFilterLabel">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>60</y>
+        <width>101</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Tarkoitus</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
@@ -11026,7 +11063,7 @@ color: rgb(255, 255, 255);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1071</width>
+     <width>1055</width>
      <height>33</height>
     </rect>
    </property>
