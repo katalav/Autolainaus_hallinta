@@ -486,8 +486,8 @@ background-color: rgb(255, 1, 5);</string>
      <widget class="QPushButton" name="saveVehiclePushButton">
       <property name="geometry">
        <rect>
-        <x>380</x>
-        <y>210</y>
+        <x>310</x>
+        <y>240</y>
         <width>91</width>
         <height>23</height>
        </rect>
@@ -514,7 +514,7 @@ color: rgb(255, 255, 255);</string>
        <rect>
         <x>20</x>
         <y>280</y>
-        <width>831</width>
+        <width>931</width>
         <height>231</height>
        </rect>
       </property>
@@ -652,8 +652,8 @@ color: rgb(255, 255, 255);</string>
      <widget class="QPushButton" name="openPicturesPushButton">
       <property name="geometry">
        <rect>
-        <x>380</x>
-        <y>110</y>
+        <x>320</x>
+        <y>40</y>
         <width>91</width>
         <height>51</height>
        </rect>
@@ -680,8 +680,8 @@ color: rgb(255, 255, 255);</string>
      <widget class="QLabel" name="carPhotoLabel">
       <property name="geometry">
        <rect>
-        <x>570</x>
-        <y>50</y>
+        <x>670</x>
+        <y>40</y>
         <width>261</width>
         <height>181</height>
        </rect>
@@ -705,8 +705,8 @@ color: rgb(255, 255, 255);</string>
      <widget class="QPushButton" name="removeVehiclePushButton">
       <property name="geometry">
        <rect>
-        <x>380</x>
-        <y>180</y>
+        <x>490</x>
+        <y>240</y>
         <width>91</width>
         <height>23</height>
        </rect>
@@ -728,25 +728,30 @@ background-color: rgb(255, 1, 5);</string>
        <string>Poista</string>
       </property>
      </widget>
-     <widget class="QCheckBox" name="lendableCheckBox">
+     <widget class="QPushButton" name="notLendablePushButton">
       <property name="geometry">
        <rect>
-        <x>320</x>
-        <y>30</y>
-        <width>171</width>
-        <height>51</height>
+        <x>600</x>
+        <y>240</y>
+        <width>111</width>
+        <height>23</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
       <property name="styleSheet">
-       <string notr="true">
-color: rgb(85, 170, 0);
-font: 14pt &quot;Segoe UI&quot;;</string>
+       <string notr="true">background-color: rgb(185, 185, 0);
+color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
-       <string>Käytettävissä</string>
-      </property>
-      <property name="checked">
-       <bool>true</bool>
+       <string>Ei käytettävissä</string>
       </property>
      </widget>
     </widget>
