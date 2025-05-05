@@ -308,6 +308,7 @@ class DbConnection():
             if currentConnection:
                 cursor.close() # Tuhotaan kursori
                 currentConnection.close() # Tuhotaan yhteys
+                
 
     # Päivitetään taulun binäärisaraketta          
     def updateBinaryField(self, table: str, column: str, criteriaColumn: str, criteriaValue, data):
@@ -385,3 +386,6 @@ if __name__ == "__main__":
                       'password': 'Q2werty'}
     dbconnection = DbConnection(settingsDictionary)
     print(dbconnection.connectionString)
+    
+    
+    

@@ -35,7 +35,7 @@
      <cursorShape>ArrowCursor</cursorShape>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="lenderTab">
      <property name="cursor">
@@ -135,6 +135,9 @@ color: rgb(255, 255, 255);</string>
            <pointsize>11</pointsize>
           </font>
          </property>
+         <property name="clearButtonEnabled">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item>
@@ -143,6 +146,9 @@ color: rgb(255, 255, 255);</string>
           <font>
            <pointsize>11</pointsize>
           </font>
+         </property>
+         <property name="clearButtonEnabled">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -153,6 +159,9 @@ color: rgb(255, 255, 255);</string>
            <pointsize>11</pointsize>
           </font>
          </property>
+         <property name="clearButtonEnabled">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item>
@@ -162,10 +171,16 @@ color: rgb(255, 255, 255);</string>
            <pointsize>11</pointsize>
           </font>
          </property>
+         <property name="clearButtonEnabled">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item>
         <widget class="QCheckBox" name="agbRestrictionCheckBox">
+         <property name="toolTip">
+          <string>Ajaminen sallittu vain automaattivaihteilla, pakollinen kenttä</string>
+         </property>
          <property name="text">
           <string>Vain automaattivaihteiset</string>
          </property>
@@ -177,6 +192,9 @@ color: rgb(255, 255, 255);</string>
           <font>
            <pointsize>11</pointsize>
           </font>
+         </property>
+         <property name="clearButtonEnabled">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -200,7 +218,7 @@ color: rgb(255, 255, 255);</string>
           </font>
          </property>
          <property name="text">
-          <string>Henkilötunnus</string>
+          <string>Henkilötunnus*</string>
          </property>
         </widget>
        </item>
@@ -212,7 +230,7 @@ color: rgb(255, 255, 255);</string>
           </font>
          </property>
          <property name="text">
-          <string>Etunimi</string>
+          <string>Etunimi*</string>
          </property>
         </widget>
        </item>
@@ -224,7 +242,7 @@ color: rgb(255, 255, 255);</string>
           </font>
          </property>
          <property name="text">
-          <string>Sukunimi</string>
+          <string>Sukunimi*</string>
          </property>
         </widget>
        </item>
@@ -236,7 +254,7 @@ color: rgb(255, 255, 255);</string>
           </font>
          </property>
          <property name="text">
-          <string>Ajokorttiluokka</string>
+          <string>Ajokorttiluokka*</string>
          </property>
         </widget>
        </item>
@@ -313,7 +331,7 @@ background-color: rgb(255, 1, 5);</string>
           </font>
          </property>
          <property name="text">
-          <string>Rekisterinumero</string>
+          <string>Rekisterinumero*</string>
          </property>
         </widget>
        </item>
@@ -325,7 +343,7 @@ background-color: rgb(255, 1, 5);</string>
           </font>
          </property>
          <property name="text">
-          <string>Merkki</string>
+          <string>Merkki*</string>
          </property>
         </widget>
        </item>
@@ -337,7 +355,7 @@ background-color: rgb(255, 1, 5);</string>
           </font>
          </property>
          <property name="text">
-          <string>Malli</string>
+          <string>Malli*</string>
          </property>
         </widget>
        </item>
@@ -349,7 +367,7 @@ background-color: rgb(255, 1, 5);</string>
           </font>
          </property>
          <property name="text">
-          <string>Vuosimalli</string>
+          <string>Vuosimalli*</string>
          </property>
         </widget>
        </item>
@@ -361,14 +379,14 @@ background-color: rgb(255, 1, 5);</string>
           </font>
          </property>
          <property name="text">
-          <string>Henkilömäärä</string>
+          <string>Henkilömäärä*</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="vehicleTypeLabel">
          <property name="text">
-          <string>Ajoneuvotyyppi</string>
+          <string>Ajoneuvotyyppi*</string>
          </property>
         </widget>
        </item>
@@ -469,6 +487,9 @@ background-color: rgb(255, 1, 5);</string>
        </item>
        <item>
         <widget class="QCheckBox" name="agbCheckBox">
+         <property name="toolTip">
+          <string>Autossa automaattivaihteet</string>
+         </property>
          <property name="text">
           <string>Automaattivaihteet</string>
          </property>
@@ -520,6 +541,9 @@ color: rgb(255, 255, 255);</string>
       </property>
       <property name="cursor" stdset="0">
        <cursorShape>ArrowCursor</cursorShape>
+      </property>
+      <property name="toolTip">
+       <string>Valitse auto klikkaamalla solua. Tämän jälkeen auton voi poistaa tai estää sen lainaamisen.</string>
       </property>
       <property name="verticalScrollBarPolicy">
        <enum>Qt::ScrollBarPolicy::ScrollBarAsNeeded</enum>
@@ -721,7 +745,7 @@ color: rgb(255, 255, 255);</string>
        <cursorShape>PointingHandCursor</cursorShape>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(57, 136, 220);
+       <string notr="true">
 background-color: rgb(255, 1, 5);</string>
       </property>
       <property name="text">
@@ -926,7 +950,7 @@ color: rgb(255, 255, 255);</string>
        <number>10000</number>
       </property>
       <property name="columnCount">
-       <number>8</number>
+       <number>9</number>
       </property>
       <row/>
       <row/>
@@ -10928,6 +10952,7 @@ color: rgb(255, 255, 255);</string>
       <row/>
       <row/>
       <row/>
+      <column/>
       <column/>
       <column/>
       <column/>
@@ -10959,6 +10984,9 @@ color: rgb(255, 255, 255);</string>
         <height>21</height>
        </rect>
       </property>
+      <property name="clearButtonEnabled">
+       <bool>true</bool>
+      </property>
      </widget>
      <widget class="QLineEdit" name="registerFilterLineEdit">
       <property name="geometry">
@@ -10968,6 +10996,9 @@ color: rgb(255, 255, 255);</string>
         <width>113</width>
         <height>21</height>
        </rect>
+      </property>
+      <property name="clearButtonEnabled">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QLabel" name="ssnFilterLabel">
@@ -11041,6 +11072,9 @@ color: rgb(255, 255, 255);</string>
         <height>21</height>
        </rect>
       </property>
+      <property name="clearButtonEnabled">
+       <bool>true</bool>
+      </property>
      </widget>
      <widget class="QLabel" name="reasonFilterLabel">
       <property name="geometry">
@@ -11059,6 +11093,264 @@ color: rgb(255, 255, 255);</string>
       <property name="text">
        <string>Tarkoitus</string>
       </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="maintenanceTab">
+     <attribute name="title">
+      <string>Ylläpito</string>
+     </attribute>
+     <widget class="QFrame" name="vehicleTypeFrame">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>40</y>
+        <width>361</width>
+        <height>451</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+      <widget class="QTableWidget" name="vehicleTypeTableWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>100</y>
+         <width>331</width>
+         <height>192</height>
+        </rect>
+       </property>
+       <property name="sortingEnabled">
+        <bool>true</bool>
+       </property>
+       <property name="rowCount">
+        <number>10</number>
+       </property>
+       <property name="columnCount">
+        <number>1</number>
+       </property>
+       <attribute name="horizontalHeaderStretchLastSection">
+        <bool>true</bool>
+       </attribute>
+       <attribute name="verticalHeaderStretchLastSection">
+        <bool>true</bool>
+       </attribute>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <column/>
+      </widget>
+      <widget class="QLineEdit" name="vehicleTypeAddLineEdit">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>40</y>
+         <width>211</width>
+         <height>21</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="vehicleTypeAddPushButton">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>40</y>
+         <width>75</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(57, 136, 220);
+color: rgb(255, 255, 255);
+</string>
+       </property>
+       <property name="text">
+        <string>Lisää</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="vehicleTypeDeletePushButton">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>310</y>
+         <width>75</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 0, 0);
+color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>Poista</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="vehicleTypeAddLabel">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>10</y>
+         <width>101</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Ajoneuvotyypit</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QFrame" name="reasonFrame">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>40</y>
+        <width>381</width>
+        <height>451</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+      <widget class="QTableWidget" name="reasonAddTableWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>90</y>
+         <width>331</width>
+         <height>192</height>
+        </rect>
+       </property>
+       <property name="sortingEnabled">
+        <bool>true</bool>
+       </property>
+       <property name="rowCount">
+        <number>10</number>
+       </property>
+       <property name="columnCount">
+        <number>1</number>
+       </property>
+       <attribute name="horizontalHeaderStretchLastSection">
+        <bool>true</bool>
+       </attribute>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <column/>
+      </widget>
+      <widget class="QLineEdit" name="reasonAddLineEdit">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>40</y>
+         <width>211</width>
+         <height>21</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="reasonAddPushButton">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>40</y>
+         <width>75</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(57, 136, 220);
+color: rgb(255, 255, 255);
+</string>
+       </property>
+       <property name="text">
+        <string>Lisää</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="reasonDeletePushButton">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>300</y>
+         <width>75</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 0, 0);
+color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string>Poista</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="reasonAddLabel">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>10</y>
+         <width>91</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Ajon tarkoitus</string>
+       </property>
+      </widget>
      </widget>
     </widget>
    </widget>
