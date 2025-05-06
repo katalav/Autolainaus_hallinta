@@ -69,13 +69,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Asetetaan auton oletuskuvaksi harmaa kamera
         self.vehiclePicture = 'uiPictures\\noPicture.png'
         
-        # Poistettavan auton rekisterinumero
+        # Poistettavan tietojen avaimmet
         self.vehicleToModify = ''
         self.personToDelete = ''
+        self.vehicleTypeToModify = ''
+        self.reasonToModify = ''
         
         # Kuluvan päivän ja vuoden määritys
-        # TODO : Tee slotti, joka päivittää -> getDates()
-        # TODO : Tee sille singnaali kun valitaan Raportit-välilehti
+
         self.today = QDate.currentDate()
         self.currentYear = str(self.today.toPython())[0:4]
         self.firstDayOfYear = QDate(int(self.currentYear), 1, 1)
@@ -109,11 +110,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Taulukoiden soluvalinnat
         self.ui.vehicleCatalogTableWidget.cellClicked.connect(self.setRegisterNumber)
         self.ui.registeredPersonsTableWidget.cellClicked.connect(self.setSSN)
+        self.ui.vehicleTypeTableWidget.clicked.connect(self.setVehicleType)
+        self.ui.reasonAddTableWidget.clicked.connect(self.setReason)
         
         #Painikkeiden aktivoinnit syöttökentistä poistuttaessa
         self.ui.capacityLineEdit.textChanged.connect(self.showSaveVehiclePB) # Poistutaan henkilömäärä-kentästä
         self.ui.vehicleClassLineEdit.textChanged.connect(self.showSavePersonPB) #Poistutaan ajokorttiluokka-kentästä
-    
+        self.ui.vehicleTypeAddLineEdit.textChanged.connect(self.showVehicleTypeAddPB)
+        self.ui.reasonAddLineEdit.textChanged.connect(self.showReasonAddPB)
     
         # Painikkeiden deaktiovoinnit kun aloitetaan ensimmäisen lomakekentän muokkaaminen
         self.ui.ssnLineEdit.textChanged.connect(self.hideDeletePersonPB)
@@ -163,11 +167,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.updateVehicleTypeTableWidget() # Autotyyppien ylläpidon taulukko
         self.updateReasonTableWidget() # Ajon syiden ylläpidon taulukko
         self.ui.diaryTableWidget.clear() # Tyhjentää raporttisivun taulukon
+        self.ui.reasonAddLineEdit.clear() # Ajon syyn lisäyskentän tyhjennys
+        self.ui.vehicleTypeAddLineEdit.clear() # Ajoneuvotyypin lisäyskentän tyhjennys
         self.ui.removeVehiclePushButton.setHidden(True) # Auton-poisto painike piiloon
         self.ui.deletePersonPushButton.setHidden(True) # Käyttäjän poisto-painike piiloon
         self.ui.notLendablePushButton.setHidden(True) # Käytettävissä painike piiloon
         self.ui.savePersonPushButton.setHidden(True) # Lainaajan tallennapainike piiloon
         self.ui.saveVehiclePushButton.setHidden(True) # Auton tallennapainike piiloon
+        self.ui.vehicleTypeAddPushButton.setHidden(True) # Ajoneuvotyypin lisäyspainike piiloon
+        self.ui.reasonAddPushButton.setHidden(True) # Ajon syyn lisäyspainike piiloon
+        self.ui.reasonDeletePushButton.setHidden(True) # Ajon syyn poistopainike piiloon
+        self.ui.vehicleTypeDeletePushButton.setHidden(True) # Ajon tarkoituksen poistopainike piiloon
         
     # Välilehtien slotit
     # ------------------
@@ -344,7 +354,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.vehicleTypeTableWidget.clearContents()
 
         # Määritellään taulukkoelementin otsikot
-        headerRow = ['ajoneuvotyyppi']
+        headerRow = ['Ajoneuvotyyppi']
         self.ui.vehicleTypeTableWidget.setHorizontalHeaderLabels(headerRow)
 
         # Asetetaan taulukon solujen arvot
@@ -373,7 +383,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.reasonAddTableWidget.clearContents()
 
         # Määritellään taulukkoelementin otsikot
-        headerRow = ['tarkoitus']
+        headerRow = ['Tarkoitus']
         self.ui.reasonAddTableWidget.setHorizontalHeaderLabels(headerRow)
 
         # Asetetaan taulukon solujen arvot
@@ -437,6 +447,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     # Lainaajan tallennuspainikkeen näkyminen 
     def showSavePersonPB(self):
         self.ui.savePersonPushButton.setHidden(False)
+        
+
+    # Ajoneuvotyypin lisäyspainikkeen näyttäminen
+    def showVehicleTypeAddPB(self):
+        self.ui.vehicleTypeAddPushButton.setHidden(False)
+
+    # Ajon syyn lisäyspainikkeen näyttäminen
+    def showReasonAddPB(self):
+        self.ui.reasonAddPushButton.setHidden(False)
         
     # Piilotetaan ajoneuvon Poista- ja Ei käytettävissä -painikkeet
     def hideVehicleButtons(self):
@@ -629,21 +648,71 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Kutsutaan tallennusmetodia
         try:
             dbConnection.addToTable(tableName, reasonDictionary)
-            
+            self.refreshUi() # Päivitetään taulukko lisäyksen jälkeen(lisäsin itse hehe)
             
         except Exception as e:
             self.openWarning('Tallennus ei onnistunut', str(e))
     # 
     def newVehicleType(self):
-        pass
+        
+         # Määritellään tietokanta-asetukset
+         dbSettings = self.currentSettings
+         plainTextPassword = self.plainTextPassword
+         dbSettings['password'] = plainTextPassword
+ 
+         # Luetaan syöttöelementtien arvot paikallisiin muuttujiin
+         vehicleType = self.ui.vehicleTypeAddLineEdit.text()
+ 
+         # Määritellään tallennusmetodin vaatimat parametrit
+         tableName = 'ajoneuvotyyppi'
+         typeDictionary = {'tyyppi': vehicleType}
+         
+         # Luodaan tietokantayhteys-olio
+         dbConnection = dbOperations.DbConnection(dbSettings)
+ 
+         # Kutsutaan tallennusmetodia
+         try:
+             dbConnection.addToTable(tableName, typeDictionary)
+             self.refreshUi() # Päivitetään taulukko lisäyksen jälkeen
+                    
+             
+         except Exception as e:
+             self.openWarning('Tallennus ei onnistunut', str(e))
     
-    # 
+    # Poistaa ajon tarkoituksen
     def deleteReason(self):
-        pass
-    
-    #
-    def deleteVehicleType(self):
-        pass
+        # Määritellään tietokanta-asetukset
+        dbSettings = self.currentSettings
+        plainTextPassword = self.plainTextPassword
+        dbSettings['password'] = plainTextPassword
+
+        # Luodaan tietokantayhteys-olio
+        dbConnection = dbOperations.DbConnection(dbSettings)
+
+        # Kutsutaan poistometodia
+        try:
+            dbConnection.deleteRowsFromTable('tarkoitus', 'tarkoitus', f"'{self.reasonToModify}'")
+            self.refreshUi()
+        except Exception as e:
+            self.openWarning('Poisto ei onnistunut', str(e))
+            
+    # Poistaa ajoneuvotyypin
+    def deleteVehicleType(self, arg):
+        
+        # Määritellään tietokanta-asetukset
+        dbSettings = self.currentSettings
+        plainTextPassword = self.plainTextPassword
+        dbSettings['password'] = plainTextPassword
+
+        # Luodaan tietokantayhteys-olio
+        dbConnection = dbOperations.DbConnection(dbSettings)
+
+        # Kutsutaan poistometodia
+        try:
+            dbConnection.deleteRowsFromTable('ajoneuvotyyppi', 'tyyppi', f"'{self.vehicleTypeToModify}'")
+            self.refreshUi()
+        except Exception as e:
+            self.openWarning('Poisto ei onnistunut', str(e))
             
     # Taulukoiden soluvalinnat
     #-------------------------
@@ -678,7 +747,36 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.statusbar.showMessage(f'valitun käyttäjän henkilötunnus on {cellValue}')
         self.ui.deletePersonPushButton.setHidden(False)
         
+    
  
+        # Asetetaan poistettavan ajoneuvotyypin arvo
+    def setVehicleType(self):
+        rowIndex = 0
+        columnIndex = 0
+        cellValue = ''
+
+        # Haetaan aktiivisen solun rivinumero ja ensimmäisen sarakkeen arvo siltä riviltä
+        rowIndex = self.ui.vehicleTypeTableWidget.currentRow()
+        cellValue = self.ui.vehicleTypeTableWidget.item(rowIndex, columnIndex).text()
+        self.vehicleTypeToModify = cellValue
+        self.ui.statusbar.showMessage(f'Poistettava ajoneuvotyyppi on {cellValue}')
+        self.ui.vehicleTypeDeletePushButton.setHidden(False)
+        self.ui.reasonDeletePushButton.setHidden(True)
+
+    # Asetetaan poistettava ajon syy    
+    def setReason(self):
+        rowIndex = 0
+        columnIndex = 0
+        cellValue = ''
+
+        # Haetaan aktiivisen solun rivinumero ja ensimmäisen sarakkeen arvo siltä riviltä
+        rowIndex = self.ui.reasonAddTableWidget.currentRow()
+        cellValue = self.ui.reasonAddTableWidget.item(rowIndex, columnIndex).text()
+        self.reasonToModify = cellValue
+        self.ui.statusbar.showMessage(f'Poistettava ajon syy on {cellValue}')
+        self.ui.reasonDeletePushButton.setHidden(False)
+        self.ui.vehicleTypeDeletePushButton.setHidden(True)
+
 
     # Virheilmoitukset ja muut Message Box -dialogit
     # ----------------------------------------------

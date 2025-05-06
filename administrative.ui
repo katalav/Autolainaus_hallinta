@@ -35,7 +35,7 @@
      <cursorShape>ArrowCursor</cursorShape>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="lenderTab">
      <property name="cursor">
@@ -952,6 +952,12 @@ color: rgb(255, 255, 255);</string>
       <property name="columnCount">
        <number>9</number>
       </property>
+      <attribute name="horizontalHeaderCascadingSectionResizes">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderStretchLastSection">
+       <bool>true</bool>
+      </attribute>
       <row/>
       <row/>
       <row/>
@@ -11123,6 +11129,9 @@ color: rgb(255, 255, 255);</string>
          <height>192</height>
         </rect>
        </property>
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Voit poistaa ajoneuvo tyypin valitsemalla sen taulusta ja painamalla Poista-painiketta, jos tyypillä on jo ajopäiväkirjamerkintöjä poistaminen ei ole mahdollista.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
        <property name="sortingEnabled">
         <bool>true</bool>
        </property>
@@ -11158,6 +11167,9 @@ color: rgb(255, 255, 255);</string>
          <width>211</width>
          <height>21</height>
         </rect>
+       </property>
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kirjoita kenttään lisättävä ajoneuvotyyppi ja paina Lisää-painiketta. Painike tulee näkyviin kirjoitettuasi kenttään.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
       <widget class="QPushButton" name="vehicleTypeAddPushButton">
@@ -11251,6 +11263,9 @@ color: rgb(255, 255, 255);</string>
          <height>192</height>
         </rect>
        </property>
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Voit poistaa ajon tarkoituksen valitsemalla sen taulukosta ja painamalla Poista-painiketta, jos tarkoituksella on jo ajopäiväkirjamerkintöjä, poistaminen ei ole mahdollista.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
        <property name="sortingEnabled">
         <bool>true</bool>
        </property>
@@ -11283,6 +11298,9 @@ color: rgb(255, 255, 255);</string>
          <width>211</width>
          <height>21</height>
         </rect>
+       </property>
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Lisää kenttään ajon tarkoitus ja paina Lisää- painiketta. Painike tulee näkyviin kirjoitettuasi kenttään.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
       <widget class="QPushButton" name="reasonAddPushButton">
