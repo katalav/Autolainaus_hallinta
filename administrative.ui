@@ -10990,6 +10990,9 @@ color: rgb(255, 255, 255);</string>
         <height>21</height>
        </rect>
       </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Rajataan ajopäiväkirjan tietoja henkilötunnuksen perusteella.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
       <property name="clearButtonEnabled">
        <bool>true</bool>
       </property>
@@ -11002,6 +11005,9 @@ color: rgb(255, 255, 255);</string>
         <width>113</width>
         <height>21</height>
        </rect>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Rajataan ajopäiväkirjan tietoja rekisterinumeron perusteella.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="clearButtonEnabled">
        <bool>true</bool>
@@ -11077,6 +11083,9 @@ color: rgb(255, 255, 255);</string>
         <width>113</width>
         <height>21</height>
        </rect>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Rajataan ajopäiväkirjan tietoja tarkoituksen perusteella.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="clearButtonEnabled">
        <bool>true</bool>
