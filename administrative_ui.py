@@ -31,6 +31,10 @@ class Ui_MainWindow(object):
         MainWindow.setWindowIcon(icon)
         self.actionMuokkaa = QAction(MainWindow)
         self.actionMuokkaa.setObjectName(u"actionMuokkaa")
+        self.action = QAction(MainWindow)
+        self.action.setObjectName(u"action")
+        self.actionOhjesivut = QAction(MainWindow)
+        self.actionOhjesivut.setObjectName(u"actionOhjesivut")
         self.actionTietoja_ohjelmasta = QAction(MainWindow)
         self.actionTietoja_ohjelmasta.setObjectName(u"actionTietoja_ohjelmasta")
         self.centralwidget = QWidget(MainWindow)
@@ -300,7 +304,7 @@ class Ui_MainWindow(object):
         self.vehicleCatalogTableWidget.verticalHeader().setProperty(u"showSortIndicator", True)
         self.openPicturesPushButton = QPushButton(self.vehicleTab)
         self.openPicturesPushButton.setObjectName(u"openPicturesPushButton")
-        self.openPicturesPushButton.setGeometry(QRect(320, 40, 91, 51))
+        self.openPicturesPushButton.setGeometry(QRect(320, 60, 91, 51))
         self.openPicturesPushButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.openPicturesPushButton.setStyleSheet(u"background-color: rgb(85, 170, 127);")
         icon1 = QIcon(QIcon.fromTheme(u"camera-photo"))
@@ -326,6 +330,12 @@ class Ui_MainWindow(object):
         self.notLendablePushButton.setFont(font1)
         self.notLendablePushButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.notLendablePushButton.setStyleSheet(u"background-color: rgb(185, 185, 0);\n"
+"color: rgb(255, 255, 255);")
+        self.updatePicturePushButton = QPushButton(self.vehicleTab)
+        self.updatePicturePushButton.setObjectName(u"updatePicturePushButton")
+        self.updatePicturePushButton.setGeometry(QRect(310, 130, 111, 24))
+        self.updatePicturePushButton.setFont(font1)
+        self.updatePicturePushButton.setStyleSheet(u"background-color: rgb(57, 136, 220);\n"
 "color: rgb(255, 255, 255);")
         self.tabWidget.addTab(self.vehicleTab, "")
         self.reportsTab = QWidget()
@@ -497,18 +507,23 @@ class Ui_MainWindow(object):
         self.menubar.setGeometry(QRect(0, 0, 1055, 33))
         self.menuAsetukset = QMenu(self.menubar)
         self.menuAsetukset.setObjectName(u"menuAsetukset")
+        self.menuOhje = QMenu(self.menubar)
+        self.menuOhje.setObjectName(u"menuOhje")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
         self.menubar.addAction(self.menuAsetukset.menuAction())
+        self.menubar.addAction(self.menuOhje.menuAction())
         self.menuAsetukset.addAction(self.actionMuokkaa)
-        self.menuAsetukset.addAction(self.actionTietoja_ohjelmasta)
+        self.menuAsetukset.addAction(self.action)
+        self.menuOhje.addAction(self.actionOhjesivut)
+        self.menuOhje.addAction(self.actionTietoja_ohjelmasta)
 
         self.retranslateUi(MainWindow)
 
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -517,7 +532,9 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.actionMuokkaa.setText(QCoreApplication.translate("MainWindow", u"Muokkaa...", None))
-        self.actionTietoja_ohjelmasta.setText(QCoreApplication.translate("MainWindow", u"Tietoja ohjelmasta...", None))
+        self.action.setText(QCoreApplication.translate("MainWindow", u"Tietoja ohjelmasta...", None))
+        self.actionOhjesivut.setText(QCoreApplication.translate("MainWindow", u"Ohjesivut", None))
+        self.actionTietoja_ohjelmasta.setText(QCoreApplication.translate("MainWindow", u"Tietoja ohjelmasta", None))
         self.registeredPersonsLabel.setText(QCoreApplication.translate("MainWindow", u"Rekister\u00f6idyt lainaajat", None))
         self.savePersonPushButton.setText(QCoreApplication.translate("MainWindow", u"Tallenna", None))
 #if QT_CONFIG(tooltip)
@@ -552,6 +569,7 @@ class Ui_MainWindow(object):
         self.carPhotoLabel.setText("")
         self.removeVehiclePushButton.setText(QCoreApplication.translate("MainWindow", u"Poista", None))
         self.notLendablePushButton.setText(QCoreApplication.translate("MainWindow", u"Ei k\u00e4ytett\u00e4viss\u00e4", None))
+        self.updatePicturePushButton.setText(QCoreApplication.translate("MainWindow", u"P\u00e4ivit\u00e4 kuva", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.vehicleTab), QCoreApplication.translate("MainWindow", u"Autot", None))
         self.reportTypecomboBox.setCurrentText("")
         self.reportTypeLabel.setText(QCoreApplication.translate("MainWindow", u"Raportti", None))
@@ -593,5 +611,6 @@ class Ui_MainWindow(object):
         self.reasonAddLabel.setText(QCoreApplication.translate("MainWindow", u"Ajon tarkoitus", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.maintenanceTab), QCoreApplication.translate("MainWindow", u"Yll\u00e4pito", None))
         self.menuAsetukset.setTitle(QCoreApplication.translate("MainWindow", u"Asetukset", None))
+        self.menuOhje.setTitle(QCoreApplication.translate("MainWindow", u"Ohje", None))
     # retranslateUi
 

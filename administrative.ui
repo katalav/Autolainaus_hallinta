@@ -35,7 +35,7 @@
      <cursorShape>ArrowCursor</cursorShape>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="lenderTab">
      <property name="cursor">
@@ -677,7 +677,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>320</x>
-        <y>40</y>
+        <y>60</y>
         <width>91</width>
         <height>51</height>
        </rect>
@@ -776,6 +776,29 @@ color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>Ei käytettävissä</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="updatePicturePushButton">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>130</y>
+        <width>111</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(57, 136, 220);
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Päivitä kuva</string>
       </property>
      </widget>
     </widget>
@@ -11396,9 +11419,17 @@ color: rgb(255, 255, 255);</string>
      <string>Asetukset</string>
     </property>
     <addaction name="actionMuokkaa"/>
+    <addaction name="action"/>
+   </widget>
+   <widget class="QMenu" name="menuOhje">
+    <property name="title">
+     <string>Ohje</string>
+    </property>
+    <addaction name="actionOhjesivut"/>
     <addaction name="actionTietoja_ohjelmasta"/>
    </widget>
    <addaction name="menuAsetukset"/>
+   <addaction name="menuOhje"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionMuokkaa">
@@ -11406,9 +11437,19 @@ color: rgb(255, 255, 255);</string>
     <string>Muokkaa...</string>
    </property>
   </action>
-  <action name="actionTietoja_ohjelmasta">
+  <action name="action">
    <property name="text">
     <string>Tietoja ohjelmasta...</string>
+   </property>
+  </action>
+  <action name="actionOhjesivut">
+   <property name="text">
+    <string>Ohjesivut</string>
+   </property>
+  </action>
+  <action name="actionTietoja_ohjelmasta">
+   <property name="text">
+    <string>Tietoja ohjelmasta</string>
    </property>
   </action>
  </widget>
