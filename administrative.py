@@ -324,11 +324,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.diaryTableWidget.clearContents()
 
         # Määritellään taulukkoelementin otsikot
-        headerRow = ['Rekisteri', 'Merkki', 'Tarkoitus', 'Malli', 'HeTu', 'Sukunimi', 'Etunimi', 'Otettu', 'Palautettu']
+        headerRow = ['Rekisteri', 'Merkki', 'Malli', 'Tarkoitus', 'HeTu', 'Sukunimi', 'Etunimi', 'Otettu', 'Palautettu']
         self.ui.diaryTableWidget.setHorizontalHeaderLabels(headerRow)
 
+        # Tulosjoukon rivimäärä
+        numberOfRows = len(tableData)
+        self.ui.diaryTableWidget.setRowCount(numberOfRows)
+
         # Asetetaan taulukon solujen arvot
-        for row in range(len(tableData)): # Luetaan listaa riveittäin
+        for row in range(numberOfRows): # Luetaan listaa riveittäin
             for column in range(len(tableData[row])): # Luetaan monikkoa sarakkeittain
                 
                 # Muutetaan merkkijonoksi ja QTableWidgetItem-olioksi
