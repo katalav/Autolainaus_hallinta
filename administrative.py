@@ -211,8 +211,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             stringValue = str(item[0])
             typeStringList.append(stringValue)
         
-        self.ui.vehicleTypecomboBox.clear()
-        self.ui.vehicleTypecomboBox.addItems(typeStringList)
+        self.ui.vehicleTypeComboBox.clear()
+        self.ui.vehicleTypeComboBox.addItems(typeStringList)
         
         # Lista ajopäiväkirjoista -> reporttinäkymien nimet
         self.ui.reportTypecomboBox.clear()
@@ -472,6 +472,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.removeVehiclePushButton.setHidden(True)
         self.ui.notLendablePushButton.setHidden(True)
         self.ui.updatePicturePushButton.setHidden(True)
+        
+        # Päivitetään auton kuvaksi harmaa kamera
+        self.vehiclePicture = 'uiPictures\\noPicture.png'
         
     def hideDeletePersonPB(self):
         self.ui.deletePersonPushButton.setHidden(True)
@@ -775,6 +778,37 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.updatePicturePushButton.setHidden(False)
         #self.ui.saveVehiclePushButton.setHidden(True)
         
+        # Päivitetään kuvakettään valitun auton kuva
+        
+        # Muodostetaan yhteys tietokantaan
+        # TODO Kuvan näyttö 
+        
+        try:
+            # Luodaan tietokantayhteys-olio
+            dbSettings = self.currentSettings
+            plainTextPassword = self.plainTextPassword
+            dbSettings['password'] = plainTextPassword
+            dbConnection = dbOperations.DbConnection(dbSettings)
+            criteria = f"rekisterinumero = '{self.vehicleToModify}'"
+            
+            # Haetaan auton kuva auto-taulusta
+            resultSet = dbConnection.filterColumsFromTable('auto', ['kuva'], criteria)
+            row = resultSet[0]
+            picture = row[0] # PNG tai JPG kuva tietokannasta
+           
+            # Tallennetaan kuva väliaikaisesti levylle pixmap-muotoon muuttamista varten
+            with open('currentCar.png', 'wb') as temporaryFile: 
+                temporaryFile.write(picture)
+
+            # Luodaan pixmap kuvatiedostosta ja päivitetään valitun auton kuva    
+            pixmap = QtGui.QPixmap('currentCar.png')
+            self.ui.carPhotoLabel.setPixmap(pixmap)
+            
+        except Exception as e:
+            title = 'Auton kuvan lataaminen ei onnistunut'
+            text = 'Jos mitään tietoja ei tullut näkyviin, ota yhteys henkilökuntaan'
+            detailedText = str(e)
+            self.openWarning(title, text, detailedText)
         
     def setSSN(self):
         rowIndex = 0

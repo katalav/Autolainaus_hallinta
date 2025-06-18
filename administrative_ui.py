@@ -264,11 +264,11 @@ class Ui_MainWindow(object):
 
         self.vehicleInputsVerticalLayout.addWidget(self.capacityLineEdit)
 
-        self.vehicleTypecomboBox = QComboBox(self.layoutWidget_2)
-        self.vehicleTypecomboBox.setObjectName(u"vehicleTypecomboBox")
-        self.vehicleTypecomboBox.setFont(font2)
+        self.vehicleTypeComboBox = QComboBox(self.layoutWidget_2)
+        self.vehicleTypeComboBox.setObjectName(u"vehicleTypeComboBox")
+        self.vehicleTypeComboBox.setFont(font2)
 
-        self.vehicleInputsVerticalLayout.addWidget(self.vehicleTypecomboBox)
+        self.vehicleInputsVerticalLayout.addWidget(self.vehicleTypeComboBox)
 
         self.agbCheckBox = QCheckBox(self.layoutWidget_2)
         self.agbCheckBox.setObjectName(u"agbCheckBox")

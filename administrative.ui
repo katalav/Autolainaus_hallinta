@@ -477,7 +477,7 @@ background-color: rgb(255, 1, 5);</string>
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="vehicleTypecomboBox">
+        <widget class="QComboBox" name="vehicleTypeComboBox">
          <property name="font">
           <font>
            <pointsize>11</pointsize>
