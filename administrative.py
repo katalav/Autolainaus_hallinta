@@ -289,7 +289,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.vehicleCatalogTableWidget.clearContents()
 
         # Määritellään taulukkoelementin otsikot
-        headerRow = ['Rekisteri', 'Käytettävissä', 'Merkki', 'Malli', 'Vuosimalli', 'Henkilömäärä', 'Tyyppi', 'Automaatti', 'Vastuuhenkilö' ,'Kuva', 'deviceid', 'Osasto']
+        headerRow = ['Rekisteri', 'Käytettävissä', 'Merkki', 'Malli', 'Vuosimalli', 'Henkilömäärä', 'Tyyppi', 'Automaatti', 'Vastuuhenkilö' ,'Kuva', 'Deviceid', 'Osasto']
         self.ui.vehicleCatalogTableWidget.setHorizontalHeaderLabels(headerRow)
 
         # Asetetaan taulukon solujen arvot
@@ -1025,6 +1025,7 @@ class SaveSettingsDialog(QtWidgets.QDialog, Settings_Dialog):
             self.ui.portLineEdit.setText(self.currentSettings['port'])
             self.ui.databaseLineEdit.setText(self.currentSettings['database'])
             self.ui.userLineEdit.setText(self.currentSettings['userName'])
+            self.ui.osastoLineEdit.setText(self.currentSettings['osasto'])
             plaintextPassword = cipher.decryptString(self.currentSettings['password'])
             self.ui.paswordLineEdit.setText(plaintextPassword)
         except Exception as e:
@@ -1051,6 +1052,7 @@ class SaveSettingsDialog(QtWidgets.QDialog, Settings_Dialog):
         port = self.ui.portLineEdit.text()
         database = self.ui.databaseLineEdit.text()
         userName = self.ui.userLineEdit.text()
+        osasto = self.ui.osastoLineEdit.text()
 
         # Muutetaan merkkijono tavumuotoon (byte, merkistö UTF-8)
         plainTextPassword = self.ui.paswordLineEdit.text()
@@ -1064,6 +1066,7 @@ class SaveSettingsDialog(QtWidgets.QDialog, Settings_Dialog):
             'port': port,
             'database': database,
             'userName': userName,
+            'osasto' : osasto,
             'password': encryptedPassword
         }
 

@@ -35,7 +35,7 @@
      <cursorShape>ArrowCursor</cursorShape>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="lenderTab">
      <property name="cursor">
@@ -571,7 +571,7 @@ color: rgb(255, 255, 255);</string>
        <number>99</number>
       </property>
       <property name="columnCount">
-       <number>11</number>
+       <number>12</number>
       </property>
       <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
        <bool>false</bool>
@@ -678,6 +678,7 @@ color: rgb(255, 255, 255);</string>
       <row/>
       <row/>
       <row/>
+      <column/>
       <column/>
       <column/>
       <column/>
@@ -11459,7 +11460,7 @@ color: rgb(255, 255, 255);</string>
         <bool>true</bool>
        </attribute>
        <attribute name="verticalHeaderStretchLastSection">
-        <bool>true</bool>
+        <bool>false</bool>
        </attribute>
        <row/>
        <row/>
