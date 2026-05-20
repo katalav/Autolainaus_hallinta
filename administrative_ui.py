@@ -26,7 +26,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(855, 643)
+        MainWindow.resize(1059, 643)
         icon = QIcon(QIcon.fromTheme(u"preferences-desktop-accessibility"))
         MainWindow.setWindowIcon(icon)
         self.actionMuokkaa = QAction(MainWindow)
@@ -174,7 +174,7 @@ class Ui_MainWindow(object):
         self.vehicleTab.setCursor(QCursor(Qt.CursorShape.ArrowCursor))
         self.layoutWidget2 = QWidget(self.vehicleTab)
         self.layoutWidget2.setObjectName(u"layoutWidget2")
-        self.layoutWidget2.setGeometry(QRect(10, 0, 101, 241))
+        self.layoutWidget2.setGeometry(QRect(10, 0, 101, 271))
         self.vehicleLabelsVerticalLayout = QVBoxLayout(self.layoutWidget2)
         self.vehicleLabelsVerticalLayout.setObjectName(u"vehicleLabelsVerticalLayout")
         self.vehicleLabelsVerticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -223,9 +223,14 @@ class Ui_MainWindow(object):
 
         self.vehicleLabelsVerticalLayout.addWidget(self.vehicleOwnerLabol)
 
+        self.osastoLabol = QLabel(self.layoutWidget2)
+        self.osastoLabol.setObjectName(u"osastoLabol")
+
+        self.vehicleLabelsVerticalLayout.addWidget(self.osastoLabol)
+
         self.layoutWidget_2 = QWidget(self.vehicleTab)
         self.layoutWidget_2.setObjectName(u"layoutWidget_2")
-        self.layoutWidget_2.setGeometry(QRect(120, 0, 169, 242))
+        self.layoutWidget_2.setGeometry(QRect(120, 0, 169, 269))
         self.vehicleInputsVerticalLayout = QVBoxLayout(self.layoutWidget_2)
         self.vehicleInputsVerticalLayout.setObjectName(u"vehicleInputsVerticalLayout")
         self.vehicleInputsVerticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -281,6 +286,12 @@ class Ui_MainWindow(object):
 
         self.vehicleInputsVerticalLayout.addWidget(self.vehicleOwnerLineEdit)
 
+        self.osastoComboBox = QComboBox(self.layoutWidget_2)
+        self.osastoComboBox.setObjectName(u"osastoComboBox")
+        self.osastoComboBox.setFont(font2)
+
+        self.vehicleInputsVerticalLayout.addWidget(self.osastoComboBox)
+
         self.saveVehiclePushButton = QPushButton(self.vehicleTab)
         self.saveVehiclePushButton.setObjectName(u"saveVehiclePushButton")
         self.saveVehiclePushButton.setGeometry(QRect(310, 240, 91, 23))
@@ -294,7 +305,7 @@ class Ui_MainWindow(object):
         if (self.vehicleCatalogTableWidget.rowCount() < 99):
             self.vehicleCatalogTableWidget.setRowCount(99)
         self.vehicleCatalogTableWidget.setObjectName(u"vehicleCatalogTableWidget")
-        self.vehicleCatalogTableWidget.setGeometry(QRect(20, 280, 931, 231))
+        self.vehicleCatalogTableWidget.setGeometry(QRect(20, 310, 931, 231))
         self.vehicleCatalogTableWidget.viewport().setProperty(u"cursor", QCursor(Qt.CursorShape.ArrowCursor))
         self.vehicleCatalogTableWidget.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
         self.vehicleCatalogTableWidget.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
@@ -542,7 +553,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 855, 33))
+        self.menubar.setGeometry(QRect(0, 0, 1059, 33))
         self.menuAsetukset = QMenu(self.menubar)
         self.menuAsetukset.setObjectName(u"menuAsetukset")
         self.menuOhje = QMenu(self.menubar)
@@ -561,7 +572,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabWidget.setCurrentIndex(3)
+        self.tabWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -595,6 +606,7 @@ class Ui_MainWindow(object):
         self.vehicleTypeLabel.setText(QCoreApplication.translate("MainWindow", u"Ajoneuvotyyppi*", None))
         self.agbLabel.setText(QCoreApplication.translate("MainWindow", u"Automaatti", None))
         self.vehicleOwnerLabol.setText(QCoreApplication.translate("MainWindow", u"Vastuuhenkil\u00f6", None))
+        self.osastoLabol.setText(QCoreApplication.translate("MainWindow", u"Osasto", None))
 #if QT_CONFIG(tooltip)
         self.agbCheckBox.setToolTip(QCoreApplication.translate("MainWindow", u"Autossa automaattivaihteet", None))
 #endif // QT_CONFIG(tooltip)

@@ -599,6 +599,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         vehicleType = self.ui.vehicleTypeComboBox.currentText()
         automaticGearBox = self.ui.agbCheckBox.isChecked()
         responsiblePerson = self.ui.vehicleOwnerLineEdit.text()
+        osasto = self.ui.osastoComboBox.currentText()
 
         # Määritellään tallennusmetodin vaatimat parametrit
         tableName = 'auto'
@@ -609,7 +610,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                           'henkilomaara': capacity,
                           'tyyppi': vehicleType,
                           'automaatti': automaticGearBox,
-                          'vastuuhenkilo': responsiblePerson
+                          'vastuuhenkilo': responsiblePerson,
+                          'osasto': osasto
                           }
         
         # Luodaan tietokantayhteys-olio
@@ -721,28 +723,30 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.openWarning('Poisto ei onnistunut', str(e)) 
 
     def newOsasto(self):
+        
          # Määritellään tietokanta-asetukset
-        dbSettings = self.currentSettings
-        plainTextPassword = self.plainTextPassword
-        dbSettings['password'] = plainTextPassword
-        
-        # Luetaan syöttöelementtien arvot paikallisiin muuttujiin
-        osasto = self.ui.osastoAddLineEdit.text()
-        
-        # Määritellään tallennusmetodin vaatimat parametrit
-        tableName = 'osasto'
-        reasonDictionary = {'osasto': osasto}
-        
-        # Luodaan tietokantayhteys-olio
-        dbConnection = dbOperations.DbConnection(dbSettings)
-
-        # Kutsutaan tallennusmetodia
-        try:
-            dbConnection.addToTable(tableName, reasonDictionary)
-            self.refreshUi() # Päivitetään taulukko lisäyksen jälkeen(lisäsin itse hehe)
-            
-        except Exception as e:
-            self.openWarning('Tallennus ei onnistunut', str(e))
+         dbSettings = self.currentSettings
+         plainTextPassword = self.plainTextPassword
+         dbSettings['password'] = plainTextPassword
+ 
+         # Luetaan syöttöelementtien arvot paikallisiin muuttujiin
+         osasto = self.ui.osastoAddLineEdit.text()
+ 
+         # Määritellään tallennusmetodin vaatimat parametrit
+         tableName = 'osasto'
+         typeDictionary = {'osasto': osasto}
+         
+         # Luodaan tietokantayhteys-olio
+         dbConnection = dbOperations.DbConnection(dbSettings)
+ 
+         # Kutsutaan tallennusmetodia
+         try:
+             dbConnection.addToTable(tableName, typeDictionary)
+             self.refreshUi() # Päivitetään taulukko lisäyksen jälkeen
+                    
+             
+         except Exception as e:
+             self.openWarning('Tallennus ei onnistunut', str(e))
     # 
     def newReason(self):
          # Määritellään tietokanta-asetukset
