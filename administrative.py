@@ -177,7 +177,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.updateVehicleTableWidget() # Autojen tiedot
         self.updateVehicleTypeTableWidget() # Autotyyppien ylläpidon taulukko
         self.updateReasonTableWidget() # Ajon syiden ylläpidon taulukko
-        self.osastoTableWidget()
+        self.updateOsastoTableWidget()
         self.ui.diaryTableWidget.clear() # Tyhjentää raporttisivun taulukon
         self.ui.reasonAddLineEdit.clear()# Ajon syyn lisäyskentän tyhjennys
         self.ui.osastoAddLineEdit.clear()
@@ -418,33 +418,38 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # TODO TÄÄLLÄ OSASTO 
         #Päivitetään osasto-taulukko
     def updateOsastoTableWidget(self):
-        
-        # Luetaan tietokanta-asetukset paikallisiin muuttujiin
+
+        # Luetaan tietokanta-asetukset
         dbSettings = self.currentSettings
         plainTextPassword = self.plainTextPassword
-        dbSettings['password'] = plainTextPassword # Vaidetaan selväkieliseksi
+        dbSettings['password'] = plainTextPassword
 
-        # Luodaan tietokantayhteys-olio
         dbConnection = dbOperations.DbConnection(dbSettings)
 
-        # Tehdään lista lainaaja-taulun tiedoista
+        # Haetaan osastot
         tableData = dbConnection.readAllColumnsFromTable('osasto')
-        
- #Tyhjennetään vanhat tiedot käyttöliittymästä ennen  uusien lukemista tietokannasta
+
+        # Tyhjennetään vanhat tiedot
         self.ui.osastoTableWidget.clearContents()
 
-        # Määritellään taulukkoelementin otsikot
+        # ASETETAAN RIVIT JA SARAKKEET  🔥🔥🔥
+        if tableData:
+            self.ui.osastoTableWidget.setRowCount(len(tableData))
+            self.ui.osastoTableWidget.setColumnCount(len(tableData[0]))
+        else:
+            self.ui.osastoTableWidget.setRowCount(0)
+            return
+
+        # Otsikot
         headerRow = ['Osasto']
         self.ui.osastoTableWidget.setHorizontalHeaderLabels(headerRow)
 
-        # Asetetaan taulukon solujen arvot
-        for row in range(len(tableData)): # Luetaan listaa riveittäin
-            for column in range(len(tableData[row])): # Luetaan monikkoa sarakkeittain
-                
-                # Muutetaan merkkijonoksi ja QTableWidgetItem-olioksi
-                data = QtWidgets.QTableWidgetItem(str(tableData[row][column])) 
+        # Täytetään taulukko
+        for row in range(len(tableData)):
+            for column in range(len(tableData[row])):
+                data = QtWidgets.QTableWidgetItem(str(tableData[row][column]))
                 self.ui.osastoTableWidget.setItem(row, column, data)
- 
+    
     # Syöttölomaketietojen tyhjennys
     # ------------------------------
     
@@ -934,8 +939,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         cellValue = ''
 
         # Haetaan aktiivisen solun rivinumero ja ensimmäisen sarakkeen arvo siltä riviltä
-        rowIndex = self.ui.osastoAddTableWidget.currentRow()
-        cellValue = self.ui.osastoAddTableWidget.item(rowIndex, columnIndex).text()
+        rowIndex = self.ui.osastoTableWidget.currentRow()
+        cellValue = self.ui.osastoTableWidget.item(rowIndex, columnIndex).text()
         self.osastoToModify = cellValue
         self.ui.statusbar.showMessage(f'Poistettava osasto on {cellValue}')
         self.ui.osastoDeletePushButton.setHidden(False)
