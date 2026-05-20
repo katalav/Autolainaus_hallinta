@@ -300,8 +300,8 @@ class Ui_MainWindow(object):
         self.saveVehiclePushButton.setStyleSheet(u"background-color: rgb(57, 136, 220);\n"
 "color: rgb(255, 255, 255);")
         self.vehicleCatalogTableWidget = QTableWidget(self.vehicleTab)
-        if (self.vehicleCatalogTableWidget.columnCount() < 10):
-            self.vehicleCatalogTableWidget.setColumnCount(10)
+        if (self.vehicleCatalogTableWidget.columnCount() < 11):
+            self.vehicleCatalogTableWidget.setColumnCount(11)
         if (self.vehicleCatalogTableWidget.rowCount() < 99):
             self.vehicleCatalogTableWidget.setRowCount(99)
         self.vehicleCatalogTableWidget.setObjectName(u"vehicleCatalogTableWidget")
@@ -310,7 +310,7 @@ class Ui_MainWindow(object):
         self.vehicleCatalogTableWidget.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
         self.vehicleCatalogTableWidget.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         self.vehicleCatalogTableWidget.setRowCount(99)
-        self.vehicleCatalogTableWidget.setColumnCount(10)
+        self.vehicleCatalogTableWidget.setColumnCount(11)
         self.vehicleCatalogTableWidget.horizontalHeader().setProperty(u"showSortIndicator", False)
         self.vehicleCatalogTableWidget.verticalHeader().setProperty(u"showSortIndicator", True)
         self.openPicturesPushButton = QPushButton(self.vehicleTab)

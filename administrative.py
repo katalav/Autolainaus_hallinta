@@ -224,6 +224,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.vehicleTypeComboBox.clear()
         self.ui.vehicleTypeComboBox.addItems(typeStringList)
         
+         # Tehdään lista osasto-yhdistelmäruudun arvoista
+        typeList = dbConnection.readColumsFromTable('osasto', ['osasto'])
+        typeStringList = []
+        for item in typeList:
+            stringValue = str(item[0])
+            typeStringList.append(stringValue)
+            
+        self.ui.osastoComboBox.clear()
+        self.ui.osastoComboBox.addItems(typeStringList)
+        
         # Lista ajopäiväkirjoista -> reporttinäkymien nimet
         self.ui.reportTypecomboBox.clear()
         self.ui.reportTypecomboBox.addItems(['ajopaivakirja', 'autoittain'])
@@ -279,7 +289,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.vehicleCatalogTableWidget.clearContents()
 
         # Määritellään taulukkoelementin otsikot
-        headerRow = ['Rekisteri', 'Käytettävissä', 'Merkki', 'Malli', 'Vuosimalli', 'Henkilömäärä', 'Tyyppi', 'Automaatti', 'Vastuuhenkilö']
+        headerRow = ['Rekisteri', 'Käytettävissä', 'Merkki', 'Malli', 'Vuosimalli', 'Henkilömäärä', 'Tyyppi', 'Automaatti', 'Vastuuhenkilö' ,'Kuva', 'deviceid', 'Osasto']
         self.ui.vehicleCatalogTableWidget.setHorizontalHeaderLabels(headerRow)
 
         # Asetetaan taulukon solujen arvot
