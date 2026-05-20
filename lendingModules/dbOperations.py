@@ -377,7 +377,7 @@ if __name__ == "__main__":
 
     settingsDictionary = {'server': 'localhost',
                       'port': '5433',
-                      'database': 'testaus',
+                      'database': 'Q2werty',
                       'userName': 'postgres',
                       'password': 'Q2werty'}
     dbconnection = DbConnection(settingsDictionary)
