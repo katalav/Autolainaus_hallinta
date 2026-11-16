@@ -22,7 +22,9 @@ class DbConnection():
         self.port = settings['port']
         self.databaseName = settings['database']
         self.userName = settings['userName']
+        
         self.password = settings['password']
+        
 
         # Yhteysmerkkijono
         self.connectionString =f'dbname={self.databaseName} user={self.userName} password={self.password} host={self.server} port={self.port}'
@@ -376,10 +378,11 @@ class DbConnection():
 if __name__ == "__main__":
 
     settingsDictionary = {'server': 'localhost',
-                      'port': '5433',
-                      'database': 'Q2werty',
-                      'userName': 'postgres',
-                      'password': 'Q2werty'}
+                        'port': '5433',
+                        'database': 'Q2werty',
+                        'userName': 'postgres',
+                        'password': 'Q2werty'}
+                        
     dbconnection = DbConnection(settingsDictionary)
 
     

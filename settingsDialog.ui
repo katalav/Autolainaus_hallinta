@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>301</width>
-    <height>234</height>
+    <height>269</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,8 +19,8 @@
   <widget class="QPushButton" name="saveSettingspushButton">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>180</y>
+     <x>200</x>
+     <y>200</y>
      <width>81</width>
      <height>23</height>
     </rect>
@@ -51,7 +51,7 @@ color: rgb(255, 255, 255);</string>
      <x>110</x>
      <y>10</y>
      <width>181</width>
-     <height>156</height>
+     <height>182</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -104,6 +104,18 @@ color: rgb(255, 255, 255);</string>
      </widget>
     </item>
     <item>
+     <widget class="QLineEdit" name="osastoLineEdit">
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Sovelluksen käyttäjätunnus&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QLineEdit" name="paswordLineEdit">
       <property name="font">
        <font>
@@ -125,8 +137,8 @@ color: rgb(255, 255, 255);</string>
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>86</width>
-     <height>141</height>
+     <width>87</width>
+     <height>181</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -179,6 +191,18 @@ color: rgb(255, 255, 255);</string>
      </widget>
     </item>
     <item>
+     <widget class="QLabel" name="osastoLabel">
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Osasto</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QLabel" name="passwordLabel">
       <property name="font">
        <font>
@@ -196,7 +220,7 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>110</x>
-     <y>180</y>
+     <y>200</y>
      <width>75</width>
      <height>24</height>
     </rect>
